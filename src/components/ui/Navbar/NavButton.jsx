@@ -1,0 +1,19 @@
+/* eslint-disable no-unused-vars */
+import { useState } from "react";
+
+/* eslint-disable react/prop-types */
+function NavButton({ children, showMenu }) {
+  const [isOpen, setIsOpen] = useState(false);
+
+  return (
+    <div
+      className="cursor-pointer rounded-full p-3 text-xl hover:bg-slate-100"
+      onClick={() => setIsOpen(!isOpen)}
+    >
+      {children}
+      {/* {showMenu && isOpen ? console.log("true") : console.log("false")} */}
+    </div>
+  );
+}
+
+export default NavButton;
