@@ -1,10 +1,9 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable no-unused-vars */
 import ArrowButton from "./ui/Buttons/ArrowButton";
-import hero2 from "../assets/images/banner/hero-right-2.webp";
 import Button from "./ui/Buttons/Button";
 import { RiSearchLine } from "react-icons/ri";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 function Slider({ slides, bgImage, bgColor }) {
   const [curSlide, setCurSlide] = useState(1);
