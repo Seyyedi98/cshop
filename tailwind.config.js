@@ -22,6 +22,15 @@ export default {
           "0%": { opacity: 0, transform: "scale(1.1)" },
           "100%": { opacity: 1, transform: "scale(1)" },
         },
+
+        slideIn: {
+          "0%": {
+            width: "0",
+          },
+          "100%": {
+            width: "100%",
+          },
+        },
       },
 
       fontSize: {
