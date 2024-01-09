@@ -1,7 +1,7 @@
 import logo from "../../../assets/images/logo.svg";
 
 function Logo() {
-  return <img src={logo} className="w-36" />;
+  return <img src={logo} className="w-36 cursor-pointer" />;
 }
 
 export default Logo;

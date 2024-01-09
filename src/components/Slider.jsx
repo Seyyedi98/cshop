@@ -57,10 +57,22 @@ function Slider({ slides, bgImage, bgColor }) {
         </div>
         {bgImage && <img src={bgImage} className="m-auto w-10/12" />}
         <div className="absolute left-4 top-1/2 z-10 -translate-y-1/2 ">
-          <ArrowButton direction="left" action={prevSlide} />
+          <ArrowButton
+            direction="left"
+            action={prevSlide}
+            outlineColor="dark"
+            color="rgb(71, 85, 105)"
+            offset="far"
+          />
         </div>
         <div className="absolute right-4 top-1/2 z-10 -translate-y-1/2">
-          <ArrowButton direction="right" action={nextSlide} />
+          <ArrowButton
+            direction="right"
+            action={nextSlide}
+            outlineColor="dark"
+            color="rgb(71, 85, 105)"
+            offset="far"
+          />
         </div>
         <div className={"absolute top-0 h-full w-full"}>
           <div className="container relative h-full">
@@ -75,7 +87,8 @@ function Slider({ slides, bgImage, bgColor }) {
               <Button
                 animation="animate-[fadeInRight_0.7s_0.4s_forwards] opacity-0"
                 mt="8"
-                fill="black"
+                color="black"
+                size="big"
               >
                 Explore more <RiSearchLine className="text-xl" />
               </Button>
