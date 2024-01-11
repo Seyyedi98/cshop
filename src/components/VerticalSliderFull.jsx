@@ -2,14 +2,12 @@
 /* eslint-disable react/prop-types */
 import { useRef, useState } from "react";
 import ArrowButton from "./ui/Buttons/ArrowButton";
-import VerticalSliderItems from "./VerticalSliderItems";
-import { slides } from "../data/data";
+import DiscoverMoreItem from "./ui/DiscoverMore/DiscoverMoreItem";
 
-function VerticalSliderFull({ title, subtitle }) {
+function VerticalSliderFull({ title, subtitle, slides }) {
   const itemRef = useRef(null);
   const [curSlide, setCurSlide] = useState(0);
 
-  // Move the slider to the right
   const moveSlideRight = function () {
     const refItem = itemRef.current;
     const newSlide = curSlide < slides.length - 2 ? curSlide + 1 : 0;
@@ -17,7 +15,6 @@ function VerticalSliderFull({ title, subtitle }) {
     refItem.style.transform = `translateX(-${572 * newSlide}px)`;
   };
 
-  // Move the slider to the left
   const moveSlideLeft = function () {
     const refItem = itemRef.current;
     const newSlide = curSlide > 0 ? curSlide - 1 : slides.length - 2;
@@ -27,7 +24,7 @@ function VerticalSliderFull({ title, subtitle }) {
   return (
     <div className="container mb-16 mt-32">
       <div className="mx-auto mb-16 flex items-center justify-between">
-        <h1 className="text-4xl font-semibold">
+        <h1 className="text-4xl font-semibold  ">
           {title}
           <span className="text-slate-500">{subtitle}</span>
         </h1>
@@ -50,7 +47,9 @@ function VerticalSliderFull({ title, subtitle }) {
       </div>
 
       <div className="flex gap-8 transition-all duration-700" ref={itemRef}>
-        <VerticalSliderItems slides={slides} />
+        {slides.map((slide) => (
+          <DiscoverMoreItem slide={slide} key={slide.id} />
+        ))}
       </div>
     </div>
   );

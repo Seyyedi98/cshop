@@ -1,31 +1,28 @@
 /* eslint-disable react/prop-types */
 import ArrowButton from "./ui/Buttons/ArrowButton";
-import VerticalSliderItems from "./VerticalSliderItems";
-import { slides } from "../data/data";
 import { useRef, useState } from "react";
+import ProductCard from "./ui/Products/ProductCard";
 
-function VerticalSliderSmall({ title, subtitle }) {
+function VerticalSliderSmall({ title, subtitle, products }) {
   const itemRef = useRef(null);
   const [curSlide, setCurSlide] = useState(0);
 
-  // Move the slider to the right
   const moveSlideRight = function () {
     const refItem = itemRef.current;
-    const newSlide = curSlide < slides.length - 2 ? curSlide + 1 : 0;
+    const newSlide = curSlide < products.length - 4 ? curSlide + 1 : 0;
     setCurSlide(newSlide);
-    refItem.style.transform = `translateX(-${572 * newSlide}px)`;
+    refItem.style.transform = `translateX(-${328 * newSlide}px)`;
   };
 
-  // Move the slider to the left
   const moveSlideLeft = function () {
     const refItem = itemRef.current;
-    const newSlide = curSlide > 0 ? curSlide - 1 : slides.length - 2;
+    const newSlide = curSlide > 0 ? curSlide - 1 : products.length - 2;
     setCurSlide(newSlide);
-    refItem.style.transform = `translateX(-${572 * newSlide}px)`;
+    refItem.style.transform = `translateX(-${328 * newSlide}px)`;
   };
 
   return (
-    <div className="container mb-16 mt-32">
+    <div className="container mb-16 mt-32 overflow-hidden p-1.5">
       <div className="mx-auto mb-16 flex items-center justify-between">
         <h1 className="text-4xl font-semibold">
           {title}
@@ -49,8 +46,10 @@ function VerticalSliderSmall({ title, subtitle }) {
         </div>
       </div>
 
-      <div className="flex gap-8 transition-all" ref={itemRef}>
-        <VerticalSliderItems slides={slides} />
+      <div className="flex gap-8 transition-all duration-700" ref={itemRef}>
+        {products.map((product) => {
+          return <ProductCard key={product.id} product={product} />;
+        })}
       </div>
     </div>
   );

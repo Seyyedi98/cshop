@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable react/prop-types */
 import { twMerge } from "tailwind-merge";
@@ -11,7 +12,7 @@ function Slider({ slides, bgImage, bgColor }) {
   const data = slides[curSlide];
 
   const changeSlideInterval = useEffect(() => {
-    const changeSlideInterval = setInterval(nextSlide, 60000);
+    const changeSlideInterval = setInterval(nextSlide, 6000);
     return () => {
       clearInterval(changeSlideInterval);
     };
