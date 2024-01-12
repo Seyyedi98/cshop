@@ -34,7 +34,7 @@ function ProductCard({ product }) {
             <Link
               className="flex items-center justify-center gap-1 rounded-2xl bg-white px-3 py-1.5 text-xs font-medium text-slate-600
                shadow-md transition-all duration-100 hover:bg-slate-50 hover:shadow-lg"
-              to={`/item/${product.id}`}
+              to={`/product/${product.id}`}
             >
               <span>
                 <RiShoppingBag2Line />

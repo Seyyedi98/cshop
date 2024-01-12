@@ -3,7 +3,7 @@ import Homepage from "./pages/Homepage";
 import Shop from "./pages/Shop";
 import Checkout from "./pages/Checkout";
 import Cart from "./pages/Cart";
-import Item from "./pages/Item";
+import Product from "./pages/Product";
 
 function App() {
   return (
@@ -13,7 +13,7 @@ function App() {
         <Route path="/shop" element={<Shop />} />
         <Route path="/checkout" element={<Checkout />} />
         <Route path="/cart" element={<Cart />} />
-        <Route path="/item/:id" element={<Item />} />
+        <Route path="/product/:id" element={<Product />} />
         <Route path="*" element={<p>page not found</p>} />
       </Routes>
     </BrowserRouter>

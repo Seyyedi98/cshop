@@ -1,4 +1,5 @@
 /** @type {import('tailwindcss').Config} */
+
 export default {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
@@ -9,6 +10,10 @@ export default {
 
     // Keep tailwind data and add these
     extend: {
+      backgroundImage: {
+        dotspattern: "url('./src/assets/images/banner/dots.svg')",
+      },
+
       colors: {
         palegreen: "#DEFEE1",
       },

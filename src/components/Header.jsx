@@ -7,7 +7,7 @@ function Header() {
     <>
       <header className="fixed z-50 w-screen border-b-[1px] bg-white">
         <nav className="mx-auto flex max-w-screen-xl items-center justify-between py-5">
-          <Logo />
+          <Logo size="big" />
           <MenuItems />
           <NavButtons />
         </nav>

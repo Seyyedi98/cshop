@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 function Button({ mt, children, color, animation, size }) {
-  let backgroundColor, textColor, backgroundHoverColor, border;
+  let backgroundColor, textColor, backgroundHoverColor, border, buttonSize;
 
   if (color === "white") {
     backgroundColor = "bg-white";
@@ -20,8 +20,9 @@ function Button({ mt, children, color, animation, size }) {
     textColor = "text-black";
   }
 
-  const buttonSize =
-    size === "big" ? "px-9 py-6 text-base" : "px-6 py-3.5 text-sm";
+  if (size === "big") buttonSize = "px-9 py-5 text-base";
+  if (size === "medium") buttonSize = "px-6 py-3.5 text-base font-medium";
+  if (size === "small") buttonSize = "px-6 py-3.5 text-sm";
 
   return (
     <button
