@@ -5,9 +5,11 @@ import Banner from "../components/Hero";
 import "../styles/styles.css";
 import VerticalSliderSmall from "../components/VerticalSliderSmall";
 import { products, slides } from "../data/data";
+import HowItWorks from "../components/HowItWorks";
 
 function Homepage() {
-  const newArrivalItems = products.slice(-6);
+  const numNewArrivalItems = 6;
+  const newArrivalItems = products.slice(-{ numNewArrivalItems });
 
   return (
     <div className="overflow-hidden">
@@ -23,6 +25,7 @@ function Homepage() {
         subtitle="REY backpacks & bags"
         products={newArrivalItems}
       />
+      <HowItWorks />
     </div>
   );
 }

@@ -77,6 +77,7 @@ const products = [
     price: 42,
     rating: 4.8,
     numRates: 112,
+    off: 20,
     colors: ["#a78bfa", "#facc15", "#fb923c", "#38bdf8", "#4ADE80"],
   },
   {
