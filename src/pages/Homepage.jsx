@@ -1,10 +1,9 @@
 /* eslint-disable no-unused-vars */
-import VerticalSliderFull from "../components/VerticalSliderFull";
+import VerticalSlider from "../components/VerticalSlider";
 import Header from "../components/Header";
 import Banner from "../components/Hero";
 import HowItWorks from "../components/HowItWorks";
 import Promo from "../components/Promos/Promo";
-import VerticalSliderSmall from "../components/VerticalSliderSmall";
 import EarnPromo from "../components/Promos/EarnPromo";
 import CtaPromo from "../components/Promos/CtaPromo";
 
@@ -13,27 +12,35 @@ import dots from "../assets/images/banner/dots.svg";
 
 import "../styles/styles.css";
 import SpecialOfferPromo from "../components/Promos/SpecialOfferPromo";
+import DiscoverMoreItem from "../components/ui/DiscoverMore/DiscoverMoreItem";
+import ProductCard from "../components/ui/Products/ProductCard";
 
 function Homepage() {
   const numNewArrivalItems = 6;
+  const numBestSellingItems = 7;
   const newArrivalItems = products.slice(-{ numNewArrivalItems });
+  const bestSellingItems = products.slice({ numBestSellingItems });
 
   return (
     <div className="overflow-hidden">
       <Header />
       <Banner />
-
-      <VerticalSliderFull
+      <VerticalSlider
         title=" Discover more. "
         subtitle="Good things are waiting for you"
-        slides={slides}
-      />
+        items={slides}
+      >
+        <DiscoverMoreItem />
+      </VerticalSlider>
 
-      <VerticalSliderSmall
+      <VerticalSlider
         title="New Arrivals. "
         subtitle="REY backpacks & bags"
-        products={newArrivalItems}
-      />
+        items={newArrivalItems}
+        overflow="hidden"
+      >
+        <ProductCard />
+      </VerticalSlider>
 
       <HowItWorks />
 
@@ -41,7 +48,16 @@ function Homepage() {
         <EarnPromo />
       </Promo>
 
-      <Promo bgColor="#fefce8" marginTop="72px" bgImage="bg-dotspattern">
+      <VerticalSlider
+        title="Best Sellers. "
+        subtitle="Best selling of the month"
+        items={bestSellingItems}
+        overflow="hidden"
+      >
+        <ProductCard />
+      </VerticalSlider>
+
+      <Promo bgColor="#fefce8" marginTop="162px" bgImage="bg-dotspattern">
         <SpecialOfferPromo bgImage={dots} />
       </Promo>
 
