@@ -20,13 +20,18 @@ function Button({ mt, children, color, animation, size }) {
     textColor = "text-black";
   }
 
-  if (size === "big") buttonSize = "px-9 py-5 text-base";
-  if (size === "medium") buttonSize = "px-6 py-3.5 text-base font-medium";
+  if (size === "big")
+    buttonSize =
+      "px-3 py-2 sm:px-4 sm:py-3 md:px-9 md:py-5 text-xs sm:text-sm md:text-base";
+  if (size === "medium")
+    buttonSize = "px-4 py-2.5 md:px-6 md:py-3.5 text-base font-medium";
   if (size === "small") buttonSize = "px-6 py-3.5 text-sm";
 
   return (
     <button
-      className={`focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 mt-${mt} shadow-[32px_30px_124px_-37px_rgba(0,0,0,0.47)] 
+      className={`focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 mt-${
+        mt / 2
+      } md:mt-${mt} shadow-[32px_30px_124px_-37px_rgba(0,0,0,0.47)] 
        ${animation} flex items-center gap-2 rounded-full transition-all
         ${backgroundHoverColor} ${backgroundColor} ${textColor} ${border} ${buttonSize}`}
     >
