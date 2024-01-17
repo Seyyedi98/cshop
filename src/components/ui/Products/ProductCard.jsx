@@ -10,11 +10,15 @@ import {
   RiWaterPercentLine,
 } from "react-icons/ri";
 import { Link } from "react-router-dom";
+import Rating from "../rating";
+import PriceTag from "../priceTag";
 
 /* eslint-disable react/prop-types */
 function ProductCard({ item }) {
   const [bookmark, setBookmark] = useState(false);
-  const [selectedColor, setSelectedColor] = useState(item.colors[0]);
+  const [selectedColor, setSelectedColor] = useState(
+    Object.values(item.colors[0])[0],
+  );
 
   return (
     <div>
@@ -62,22 +66,24 @@ function ProductCard({ item }) {
         </button>
         <div className="p-2">
           <ul className="mt-2 flex w-full items-center gap-2.5">
-            {item.colors.map((color) => {
-              return (
-                <li key={color}>
-                  <div
-                    onClick={() => setSelectedColor(color)}
-                    style={{
-                      backgroundColor: `${color}`,
-                      outlineColor: `${color}`,
-                    }}
-                    className={`h-[18px] w-[18px] cursor-pointer rounded-full border-2 outline-2 outline-offset-2 ${
-                      selectedColor === color && "outline"
-                    }`}
-                  ></div>
-                </li>
-              );
-            })}
+            {item.colors.map((colorObj) =>
+              Object.values(colorObj).map((color) => {
+                return (
+                  <li key={color}>
+                    <div
+                      onClick={() => setSelectedColor(color)}
+                      style={{
+                        backgroundColor: `${color}`,
+                        outlineColor: `${color}`,
+                      }}
+                      className={`h-[18px] w-[18px] cursor-pointer rounded-full border-2 outline-2 outline-offset-2 ${
+                        selectedColor === color && "outline"
+                      }`}
+                    ></div>
+                  </li>
+                );
+              }),
+            )}
           </ul>
           <h4 className=" mt-4 text-base font-semibold tracking-wide">
             {item.title}
@@ -87,17 +93,8 @@ function ProductCard({ item }) {
           </h5>
 
           <div className="mt-4 flex items-center justify-between">
-            <span className="rounded-md border-2 border-solid px-2.5 py-[3px] text-sm font-semibold text-green-500">
-              ${item.price}
-            </span>
-            <div className="flex items-center justify-center gap-1">
-              <span className="text-lg text-yellow-400">
-                <RiStarFill />
-              </span>
-              <p className="mt-0.5 text-sm font-thin text-slate-500">
-                {item.rating} ({item.numRates} reviews)
-              </p>
-            </div>
+            <PriceTag price={item.price} />
+            <Rating rating={item.rating} numRates={item.numRates} />
           </div>
         </div>
       </div>

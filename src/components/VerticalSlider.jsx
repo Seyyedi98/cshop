@@ -1,6 +1,5 @@
-/* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
-import React, { Children, useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import ArrowButton from "./ui/Buttons/ArrowButton";
 
 function VerticalSlider({ title, subtitle, items, children, overflow }) {
@@ -24,8 +23,7 @@ function VerticalSlider({ title, subtitle, items, children, overflow }) {
 
   const moveSlideRight = function () {
     const refItem = itemRef.current;
-    const newSlide =
-      curSlide < items.length - items.length / 2 ? curSlide + 1 : 0;
+    const newSlide = curSlide < Math.floor(items.length / 2) ? curSlide + 1 : 0;
     setCurSlide(newSlide);
     refItem.style.transform = `translateX(-${
       (childElWidth + childElsGap) * newSlide
@@ -34,8 +32,7 @@ function VerticalSlider({ title, subtitle, items, children, overflow }) {
 
   const moveSlideLeft = function () {
     const refItem = itemRef.current;
-    const newSlide =
-      curSlide > 0 ? curSlide - 1 : items.length - items.length / 2;
+    const newSlide = curSlide > 0 ? curSlide - 1 : Math.floor(items.length / 2);
     setCurSlide(newSlide);
     refItem.style.transform = `translateX(-${
       (childElWidth + childElsGap) * newSlide
