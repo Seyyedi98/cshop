@@ -4,7 +4,7 @@ import NavButton from "./NavButton";
 
 function NavButtons() {
   return (
-    <div className="flex justify-between gap-x-1">
+    <div className="flex justify-between lg:gap-x-1">
       <NavButton>
         <RiSearchLine />
       </NavButton>
