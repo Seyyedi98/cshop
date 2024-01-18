@@ -11,13 +11,12 @@ function Header() {
   return (
     <>
       <header className="fixed z-50 w-screen border-b-[1px] bg-white">
+        <div
+          className={`${
+            isOpen ? "" : "translate-x-full"
+          } z-5 fixed right-0 top-0 h-screen w-screen bg-white/50 backdrop-blur-md transition-all duration-300 md:invisible`}
+        ></div>
         <nav className="mx-auto flex max-w-screen-xl items-center justify-between px-4 py-2 md:px-2 md:py-5">
-          <div
-            className={`${
-              isOpen ? "" : "translate-x-full"
-            } z-5 fixed right-0 top-0 h-screen w-screen bg-white/50
-             backdrop-blur-md transition-all duration-300 md:invisible`}
-          ></div>
           <div className="hidden md:block md:px-4">
             <Logo size="big" />
           </div>
@@ -30,9 +29,9 @@ function Header() {
           <div
             className={`${
               isOpen
-                ? "animate-[fadeInRight_0.3s_ease-in-out] transition-all"
-                : "opacity-0"
-            } fixed md:visible md:relative md:block`}
+                ? "block animate-[fadeInRight_0.3s_ease-in-out] transition-all"
+                : "hidden"
+            } fixed md:visible md:relative md:block `}
           >
             <MenuItems />
           </div>
@@ -49,11 +48,9 @@ function Header() {
           </div>
         </nav>
       </header>
-      <div className=" h-[84px] w-full"></div>
+      <div className="mr-12 h-[60px] w-full md:h-[84px]"></div>
     </>
   );
 }
 
 export default Header;
-
-// animate-[slideIn_0.3s_ease-in-out] transition-all
