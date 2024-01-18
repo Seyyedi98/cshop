@@ -50,7 +50,6 @@ function Header() {
         </nav>
       </header>
       <div className=" h-[84px] w-full"></div>
-      <div className="mr-12 h-[60px] w-full md:h-[84px]"></div>
     </>
   );
 }
