@@ -93,11 +93,16 @@ function CategoriesBanner() {
   const [isActive, setIsActive] = useState("Women");
 
   return (
-    <div className="z-0 m-auto w-[75%] rounded-3xl bg-neutral-100/70">
-      <div className="container py-24">
-        <h1 className="text-center text-5xl font-semibold">Start exploring.</h1>
+    <div className="z-0 mx-4 rounded-3xl bg-neutral-100/70 md:m-auto md:mt-44 md:w-[85%] xl:w-[75%]">
+      <div className="container py-16 md:py-24">
+        <h1 className="mt-12 text-center text-4xl font-semibold md:mt-0 md:text-5xl">
+          Start exploring.
+        </h1>
         <div>
-          <ul className="m-auto mb-12 mt-12 flex w-fit items-center justify-center gap-1 rounded-full bg-white p-1 shadow-md">
+          <ul
+            className="invisible m-auto mb-12 flex w-fit items-center justify-center
+           gap-1 rounded-full bg-white p-1 shadow-md md:mt-12 lg:visible"
+          >
             {categories.map((item, index) => (
               <CategoriesNav
                 title={item.title}
@@ -109,7 +114,7 @@ function CategoriesBanner() {
             ))}
           </ul>
         </div>
-        <div className="grid grid-cols-1 grid-rows-2 gap-6 md:grid-cols-3 ">
+        <div className="grid grid-cols-1 grid-rows-2 gap-6 p-8 sm:grid-cols-2 lg:grid-cols-3 ">
           {subCategories.map((cat) => (
             <div key={cat.title}>
               <CategoriesCard data={cat} />

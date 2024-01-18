@@ -6,10 +6,11 @@ function VerticalSlider({ title, subtitle, items, children, overflow }) {
   const itemRef = useRef(null);
   const [curSlide, setCurSlide] = useState(0);
   const [childElWidth, setChildElWidth] = useState();
+  const [isWideScreen, setIsWideScreen] = useState(window.innerWidth > 640);
 
+  let childElsGap = isWideScreen ? 32 : 16;
   // Calculate children items width for carousel
   const childEl = useRef(null);
-  let childElsGap = 32;
 
   useEffect(() => {
     // Access the child component's DOM element
@@ -19,6 +20,20 @@ function VerticalSlider({ title, subtitle, items, children, overflow }) {
       // Get the width of the child component
       setChildElWidth(childElement.offsetWidth);
     }
+  }, []);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsWideScreen(window.innerWidth > 640);
+    };
+
+    // Attach the event listener when the component mounts
+    window.addEventListener("resize", handleResize);
+
+    // Cleanup the event listener when the component unmounts
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
   }, []);
 
   const moveSlideRight = function () {
@@ -41,14 +56,16 @@ function VerticalSlider({ title, subtitle, items, children, overflow }) {
 
   return (
     <div
-      className={`container mb-16 mt-32 p-1.5 ${
+      className={`container mb-2 mt-16 p-4 xl:mb-16 xl:mt-32 xl:p-1.5 ${
         overflow === "hidden" && "overflow-hidden"
       }`}
     >
       <div className="mx-auto mb-16 flex items-center justify-between">
-        <h1 className="text-4xl font-semibold">
+        <h1 className="text-lg font-semibold sm:text-2xl xl:text-4xl">
           {title}
-          <span className="text-slate-500">{subtitle}</span>
+          <span className="text-base text-slate-500 sm:text-2xl">
+            {subtitle}
+          </span>
         </h1>
         <div className="flex gap-5">
           <ArrowButton

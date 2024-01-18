@@ -23,7 +23,7 @@ function ProductCard({ item }) {
   return (
     <div>
       <div className="relative">
-        <div className="relative grid h-full w-[296px] cursor-pointer place-items-center rounded-3xl bg-slate-50 ">
+        <div className="relative grid h-full w-[92vw] cursor-pointer place-items-center rounded-3xl bg-slate-50 sm:w-[296px] ">
           {item.off && (
             <span className="absolute left-2 top-2 z-20 flex items-center justify-center gap-1 rounded-2xl bg-white px-3 py-1.5 text-xs font-medium text-slate-600 shadow-sm">
               <span className="text-base">

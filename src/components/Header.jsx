@@ -1,8 +1,13 @@
+/* eslint-disable no-unused-vars */
+import { useState } from "react";
 import Logo from "./ui/Navbar/Logo";
 import MenuItems from "./ui/Navbar/MenuItems";
 import NavButtons from "./ui/Navbar/NavButtons";
+import HumbergerMenu from "./ui/Navbar/HumbergerMenu";
 
 function Header() {
+  const [isOpen, setIsOpen] = useState(false);
+
   return (
     <>
       <header className="fixed z-50 w-screen border-b-[1px] bg-white">
@@ -12,7 +17,7 @@ function Header() {
           <NavButtons />
         </nav>
       </header>
-      <div className=" h-[84px] w-full"></div>
+      <div className="mr-12 h-[60px] w-full md:h-[84px]"></div>
     </>
   );
 }

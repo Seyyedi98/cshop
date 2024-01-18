@@ -5,9 +5,9 @@ import Logo from "../ui/Navbar/Logo";
 function EarnPromo() {
   return (
     <>
-      <div className="flex flex-col justify-center">
+      <div className="mb-24 mt-12 flex w-full flex-col items-center justify-center md:mb-0 md:mt-0 md:items-start md:p-12 lg:p-20">
         <Logo size="small" />
-        <h1 className="mt-8 text-6xl font-semibold leading-[1.3]">
+        <h1 className="mt-8 text-center text-4xl font-semibold leading-[1.3] md:text-left lg:text-6xl">
           Earn free money with Ciseco
         </h1>
         <p className="mt-6 block text-slate-500">
@@ -22,7 +22,10 @@ function EarnPromo() {
           </Button>
         </div>
       </div>
-      <img src={rightLargeImg} className="h-[517px] w-[728px]" />
+      <img
+        src={rightLargeImg}
+        className="lg:h-[400px]d mt-32 hidden md:inline md:h-[300px] xl:h-[517px] xl:w-[728px]"
+      />
     </>
   );
 }

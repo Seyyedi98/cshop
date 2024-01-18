@@ -8,7 +8,7 @@ function Promo({ children, bgColor, marginTop, bgImage, marginBottom }) {
         marginTop: marginTop,
         marginBottom: marginBottom,
       }}
-      className={`${bgImage} container relative flex h-[586px] w-full justify-between rounded-[40px] bg-cover`}
+      className={`${bgImage} container relative flex w-full justify-between rounded-[40px] bg-cover md:h-[586px]`}
     >
       {children}
     </div>

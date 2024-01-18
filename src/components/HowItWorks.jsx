@@ -6,11 +6,11 @@ import VectorHIW from "../assets/images/howItWorks/VectorHIW.svg";
 
 function HowItWorks() {
   return (
-    <div className="container relative my-32 flex items-start border-y-2 border-solid border-slate-100 py-32">
+    <div className="container relative my-8 flex border-y-2 border-solid border-slate-100 py-8 sm:mb-12 sm:mt-32 sm:items-start sm:py-32">
       <img src={VectorHIW} className="absolute z-10 -ml-12 mt-6" />
-      <ul className="z-20 flex items-center gap-16">
+      <ul className="z-20 flex flex-wrap items-center justify-center gap-16 lg:flex-nowrap ">
         <li className="flex flex-col items-center gap-4">
-          <img className="w-36" src={HIW1img} />
+          <img className="w-28 md:w-36" src={HIW1img} />
           <span className="rounded-full bg-red-100 px-2.5 py-1 text-xs font-medium text-red-900">
             Step 1
           </span>
@@ -21,7 +21,7 @@ function HowItWorks() {
         </li>
 
         <li className="flex flex-col items-center gap-4">
-          <img className="w-36" src={HIW2img} />
+          <img className="w-28 md:w-36" src={HIW2img} />
           <span className="rounded-full bg-indigo-100 px-2.5 py-1 text-xs font-medium text-indigo-900">
             Step 2
           </span>
@@ -32,7 +32,7 @@ function HowItWorks() {
         </li>
 
         <li className="flex flex-col items-center gap-4">
-          <img className="w-36" src={HIW3img} />
+          <img className="w-28 md:w-36" src={HIW3img} />
           <span className="rounded-full bg-yellow-100 px-2.5 py-1 text-xs font-medium text-yellow-900">
             Step 3
           </span>
@@ -43,7 +43,7 @@ function HowItWorks() {
         </li>
 
         <li className="flex flex-col items-center gap-4">
-          <img className="w-36" src={HIW4img} />
+          <img className="w-28 md:w-36" src={HIW4img} />
           <span className="rounded-full bg-purple-100 px-2.5 py-1 text-xs font-medium text-purple-900">
             Step 4
           </span>

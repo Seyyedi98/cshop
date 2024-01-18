@@ -12,7 +12,7 @@ function Slider({ slides, bgImage, bgColor }) {
   const data = slides[curSlide];
 
   const changeSlideInterval = useEffect(() => {
-    const changeSlideInterval = setInterval(nextSlide, 6000);
+    const changeSlideInterval = setInterval(nextSlide, 60000);
     return () => {
       clearInterval(changeSlideInterval);
     };
@@ -38,8 +38,10 @@ function Slider({ slides, bgImage, bgColor }) {
 
   function Content() {
     return (
-      <div className={`relative h-[680px] ${bgColor} overflow-hidden`}>
-        <div className="absolute bottom-8 left-1/2 z-10 flex -translate-x-1/2 cursor-pointer gap-2">
+      <div
+        className={`relative h-[120vw] sm:h-[350px] md:h-[480px] lg:h-[680px] ${bgColor} overflow-hidden`}
+      >
+        <div className="absolute bottom-4 left-1/2 z-10 flex -translate-x-1/2 cursor-pointer gap-2 sm:bottom-8">
           {slides.map((slide, index) => (
             <div
               className="h-1 w-20 rounded-full bg-white"
@@ -75,15 +77,27 @@ function Slider({ slides, bgImage, bgColor }) {
             offset="far"
           />
         </div>
-        <div className={"absolute top-0 h-full w-full"}>
+        <div className={"absolute top-0 h-full w-full py-6 lg:p-16"}>
           <div className="container relative h-full">
-            <div className="grid h-full w-[60%] content-center justify-items-start gap-8">
-              <h4 className="animate-[fadeInRight_0.7s_forwards]  text-xl font-medium opacity-0">
+            <div className="grid h-full w-full content-center justify-items-center gap-4 sm:w-[60%] sm:justify-items-start sm:gap-8">
+              <h4 className="animate-[fadeInRight_0.7s_forwards] text-lg font-thin opacity-0 sm:text-xl sm:font-medium">
                 {data.subtitle}
               </h4>
-              <h1 className="mb-8 animate-[fadeInRight_0.7s_0.2s_forwards] text-7xl font-semibold leading-[1.1] opacity-0">
+              <h1
+                className="mb-0 animate-[fadeInRight_0.7s_0.2s_forwards] text-xl font-bold leading-[1.1]
+               opacity-0 sm:text-3xl md:mb-6 md:text-4xl lg:mb-8 lg:text-5xl xl:text-7xl"
+              >
                 {data.title}
               </h1>
+
+              <div
+                className={`relative right-10 mr-[-10%] w-[60%] origin-top-left animate-[fadeIn_0.7s_forwards] opacity-0
+               sm:absolute sm:w-[45%] md:right-16 xl:right-16 xl:w-[45%] 2xl:right-0  ${
+                 data.resize ? `bottom-0 mr-[-15%] w-[80%]` : `top-0`
+               }`}
+              >
+                <img src={data.image} />
+              </div>
 
               <Button
                 animation="animate-[fadeInRight_0.7s_0.4s_forwards] opacity-0"
@@ -93,13 +107,6 @@ function Slider({ slides, bgImage, bgColor }) {
               >
                 Explore more <RiSearchLine className="text-xl" />
               </Button>
-            </div>
-            <div
-              className={`absolute right-0 mr-[-10%] w-[52%] origin-top-left animate-[fadeIn_0.7s_forwards] opacity-0 ${
-                data.resize ? `bottom-0 mr-[-15%] w-[70%]` : `top-0`
-              }`}
-            >
-              <img src={data.image} />
             </div>
           </div>
         </div>
