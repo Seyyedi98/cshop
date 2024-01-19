@@ -14,7 +14,8 @@ function App() {
         <Route path="/checkout" element={<Checkout />} />
         <Route path="/cart" element={<Cart />} />
         <Route path="/product/:id" element={<Product />} />
-        <Route path="*" element={<p>page not found</p>} />
+        <Route path="*" element={<Homepage />} />
+        {/* <Route path="*" element={<p>page not found</p>} /> */}
       </Routes>
     </BrowserRouter>
   );
