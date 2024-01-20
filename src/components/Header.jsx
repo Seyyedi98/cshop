@@ -10,7 +10,7 @@ function Header() {
 
   return (
     <>
-      <header className="fixed z-50 w-screen border-b-[1px] bg-white">
+      <header className="fixed z-50 w-screen border-b-[1px] border-solid border-slate-200 bg-white">
         <div
           className={`${
             isOpen ? "" : "translate-x-full"
@@ -21,7 +21,7 @@ function Header() {
             <Logo size="big" />
           </div>
 
-          <div className="order-2 hidden sm:block md:hidden">
+          <div className="order-2 -ml-12 sm:block md:hidden">
             <Logo size="small" />
           </div>
 

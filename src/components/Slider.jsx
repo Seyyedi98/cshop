@@ -12,7 +12,7 @@ function Slider({ slides, bgImage, bgColor }) {
   const data = slides[curSlide];
 
   const changeSlideInterval = useEffect(() => {
-    const changeSlideInterval = setInterval(nextSlide, 60000);
+    const changeSlideInterval = setInterval(nextSlide, 6000);
     return () => {
       clearInterval(changeSlideInterval);
     };
@@ -39,7 +39,7 @@ function Slider({ slides, bgImage, bgColor }) {
   function Content() {
     return (
       <div
-        className={`relative h-[120vw] sm:h-[350px] md:h-[480px] lg:h-[680px] ${bgColor} overflow-hidden`}
+        className={`relative h-[120vw] sm:h-[350px] md:h-[480px] lg:h-[600px] ${bgColor} overflow-hidden sm:p-4 md:p-6`}
       >
         <div className="absolute bottom-4 left-1/2 z-10 flex -translate-x-1/2 cursor-pointer gap-2 sm:bottom-8">
           {slides.map((slide, index) => (
@@ -91,8 +91,8 @@ function Slider({ slides, bgImage, bgColor }) {
               </h1>
 
               <div
-                className={`relative right-10 mr-[-10%] w-[60%] origin-top-left animate-[fadeIn_0.7s_forwards] opacity-0
-               sm:absolute sm:w-[45%] md:right-16 xl:right-16 xl:w-[45%] 2xl:right-0  ${
+                className={`xl:right-22 relative right-10 mr-[-10%] w-[60%] origin-top-left animate-[fadeIn_0.7s_forwards]
+               opacity-0 sm:absolute sm:right-24 sm:w-[45%] lg:right-28 xl:w-[42%] 2xl:right-0 ${
                  data.resize ? `bottom-0 mr-[-15%] w-[80%]` : `top-0`
                }`}
               >

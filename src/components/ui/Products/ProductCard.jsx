@@ -1,29 +1,31 @@
 /* eslint-disable no-unused-vars */
 
-import { useState } from "react";
 import {
   RiFullscreenFill,
-  RiHeartFill,
-  RiHeartLine,
   RiShoppingBag2Line,
-  RiStarFill,
   RiWaterPercentLine,
 } from "react-icons/ri";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Rating from "../rating";
 import PriceTag from "../priceTag";
+import Bookmark from "../Buttons/Bookmark";
+import ItemColors from "./ItemColors";
 
 /* eslint-disable react/prop-types */
 function ProductCard({ item }) {
-  const [bookmark, setBookmark] = useState(false);
-  const [selectedColor, setSelectedColor] = useState(
-    Object.values(item.colors[0])[0],
-  );
+  const navigate = useNavigate();
+
+  // const [selectedColor, setSelectedColor] = useState(
+  //   Object.values(item.colors[0])[0],
+  // );
 
   return (
     <div>
-      <div className="relative">
-        <div className="relative grid h-full w-[92vw] cursor-pointer place-items-center rounded-3xl bg-slate-50 sm:w-[296px] ">
+      <div className="h[300px] relative">
+        <div
+          onClick={() => navigate(`/product/${item.id}`)}
+          className="relative grid h-[250px] w-[92vw] cursor-pointer place-items-center overflow-hidden rounded-3xl bg-slate-50 sm:w-[296px]"
+        >
           {item.off && (
             <span className="absolute left-2 top-2 z-20 flex items-center justify-center gap-1 rounded-2xl bg-white px-3 py-1.5 text-xs font-medium text-slate-600 shadow-sm">
               <span className="text-base">
@@ -32,7 +34,7 @@ function ProductCard({ item }) {
               {item.off}% Discount
             </span>
           )}
-          <img className="w-[180px] py-16" src={item.image} />
+          <img className="h-full object-cover" src={item.images[0]} />
 
           <div className="absolute bottom-5 z-20 flex h-full w-full items-end justify-center gap-2 opacity-0 hover:animate-[fadeInUp_0.3s_ease-in-out] hover:opacity-100">
             <Link
@@ -56,36 +58,13 @@ function ProductCard({ item }) {
             </button>
           </div>
         </div>
-        <button
-          className={`absolute right-3 top-3 z-40 rounded-full bg-white p-1.5 text-2xl shadow-sm ${
-            bookmark ? "text-red-500" : ""
-          }`}
-          onClick={() => setBookmark(!bookmark)}
-        >
-          {bookmark ? <RiHeartFill /> : <RiHeartLine />}
-        </button>
+
+        <span className="absolute right-3 top-3 z-40">
+          <Bookmark />
+        </span>
         <div className="p-2">
-          <ul className="mt-2 flex w-full items-center gap-2.5">
-            {item.colors.map((colorObj) =>
-              Object.values(colorObj).map((color) => {
-                return (
-                  <li key={color}>
-                    <div
-                      onClick={() => setSelectedColor(color)}
-                      style={{
-                        backgroundColor: `${color}`,
-                        outlineColor: `${color}`,
-                      }}
-                      className={`h-[18px] w-[18px] cursor-pointer rounded-full border-2 outline-2 outline-offset-2 ${
-                        selectedColor === color && "outline"
-                      }`}
-                    ></div>
-                  </li>
-                );
-              }),
-            )}
-          </ul>
-          <h4 className=" mt-4 text-base font-semibold tracking-wide">
+          <ItemColors item={item} />
+          <h4 className="mt-4 text-base font-semibold tracking-wide">
             {item.title}
           </h4>
           <h5 className="mt-1 text-sm font-medium text-slate-500">

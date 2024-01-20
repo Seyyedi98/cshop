@@ -93,15 +93,15 @@ function CategoriesBanner() {
   const [isActive, setIsActive] = useState("Women");
 
   return (
-    <div className="z-0 mx-4 rounded-3xl bg-neutral-100/70 md:m-auto md:mt-44 md:w-[85%] xl:w-[75%]">
-      <div className="container py-16 md:py-24">
-        <h1 className="mt-12 text-center text-4xl font-semibold md:mt-0 md:text-5xl">
+    <div className="z-0 mx-4 rounded-3xl bg-neutral-100/70 md:m-auto md:mt-6 md:w-[85%] xl:mt-36 xl:w-[75%]">
+      <div className="container py-16 md:py-24 ">
+        <h1 className="text-center text-4xl font-semibold md:mt-0  md:text-5xl">
           Start exploring.
         </h1>
         <div>
           <ul
-            className="invisible m-auto mb-12 flex w-fit items-center justify-center
-           gap-1 rounded-full bg-white p-1 shadow-md md:mt-12 lg:visible"
+            className="invisible m-auto flex w-fit items-center justify-center gap-1
+           rounded-full bg-white p-1 shadow-md md:mt-12 lg:visible lg:mb-12"
           >
             {categories.map((item, index) => (
               <CategoriesNav
@@ -114,7 +114,7 @@ function CategoriesBanner() {
             ))}
           </ul>
         </div>
-        <div className="grid grid-cols-1 grid-rows-2 gap-6 p-8 sm:grid-cols-2 lg:grid-cols-3 ">
+        <div className="grid grid-cols-1 grid-rows-2 gap-6 p-4 sm:grid-cols-2 lg:grid-cols-3 ">
           {subCategories.map((cat) => (
             <div key={cat.title}>
               <CategoriesCard data={cat} />

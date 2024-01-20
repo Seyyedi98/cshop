@@ -7,17 +7,17 @@ function HumbergerMenu({ isOpen, toggleMenu }) {
         onClick={toggleMenu}
       >
         <span
-          className={`mb-1 block h-[3px] w-8 bg-slate-600 transition duration-300 ease-in-out ${
+          className={`mb-1 block h-[2.5px] w-8 bg-slate-700 transition duration-300 ease-in-out ${
             isOpen ? "translate-y-[11px] rotate-45 transform" : ""
           }`}
         ></span>
         <span
-          className={`mb-1 block h-[3px] w-8 bg-slate-600 transition duration-300 ease-in-out ${
+          className={`mb-1 block h-[2.5px] w-8 bg-slate-700 transition duration-300 ease-in-out ${
             isOpen ? "opacity-0" : ""
           }`}
         ></span>
         <span
-          className={`block h-[3px]  w-8 bg-slate-600 transition duration-300 ease-in-out ${
+          className={`block h-[2.5px]  w-8 bg-slate-700 transition duration-300 ease-in-out ${
             isOpen ? "-translate-y-[11px] -rotate-45 transform" : ""
           }`}
         ></span>

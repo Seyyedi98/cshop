@@ -6,7 +6,7 @@ function EarnPromo() {
   return (
     <>
       <div
-        className="mb-24 mt-12 flex w-full flex-col items-center justify-center
+        className="mb-24 mt-12 flex w-full flex-col items-center justify-center p-4
        md:mb-0 md:mt-0 md:items-start md:p-12 lg:p-20"
       >
         <Logo size="small" />
