@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import VerticalSlider from "../components/VerticalSlider";
 import Header from "../components/Header";
 import Banner from "../components/Hero";
@@ -6,7 +7,7 @@ import Promo from "../components/Promos/Promo";
 import EarnPromo from "../components/Promos/EarnPromo";
 import CtaPromo from "../components/Promos/CtaPromo";
 
-import { products, topSells, slides, departments } from "../data/data";
+import { topSells, slides, departments } from "../data/data";
 import dots from "../assets/images/banner/dots.svg";
 
 import "../styles/styles.css";
@@ -17,13 +18,18 @@ import CategoriesBanner from "../components/CategoriesBanner";
 import PhotoGridProductCart from "../components/ui/Products/PhotoGridProductCart";
 import Department from "../components/ui/Department";
 import Footer from "../components/Footer";
+import { useProducts } from "../features/products/useProducts";
 
 function Homepage() {
-  const numNewArrivalItems = 6;
-  const numBestSellingItems = 7;
-  const newArrivalItems = products.slice(-{ numNewArrivalItems });
-  const bestSellingItems = products.slice({ numBestSellingItems });
+  const { data: products, isLoading: isLoadingProducts } = useProducts();
+
+  // const numNewArrivalItems = 6;
+  // const numBestSellingItems = 7;
+  // const newArrivalItems = products.slice(-{ numNewArrivalItems });
+  // const bestSellingItems = products.slice({ numBestSellingItems });
   const test = topSells.slice(-5);
+
+  if (isLoadingProducts) return <p>Loading</p>;
 
   return (
     <div className="overflow-hidden">
@@ -40,7 +46,7 @@ function Homepage() {
       <VerticalSlider
         title="New Arrivals. "
         subtitle="REY backpacks & bags"
-        items={newArrivalItems}
+        items={products}
         overflow="hidden"
       >
         <ProductCard />
@@ -57,7 +63,7 @@ function Homepage() {
       <VerticalSlider
         title="Best Sellers. "
         subtitle="Best selling of the month"
-        items={bestSellingItems}
+        items={products}
         overflow="hidden"
       >
         <ProductCard />
@@ -69,7 +75,7 @@ function Homepage() {
 
       <VerticalSlider
         title="Chosen by our experts"
-        items={test}
+        items={products}
         overflow="hidden"
       >
         <PhotoGridProductCart />

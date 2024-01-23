@@ -39,7 +39,7 @@ function Slider({ slides, bgImage, bgColor }) {
   function Content() {
     return (
       <div
-        className={`relative h-[120vw] sm:h-[350px] md:h-[480px] lg:h-[600px] ${bgColor} overflow-hidden sm:p-4 md:p-6`}
+        className={`relative h-[120vw] sm:h-[350px] md:h-[480px] lg:h-[600px] xl:h-[680px] ${bgColor} overflow-hidden sm:p-4 md:p-6`}
       >
         <div className="absolute bottom-4 left-1/2 z-10 flex -translate-x-1/2 cursor-pointer gap-2 sm:bottom-8">
           {slides.map((slide, index) => (
@@ -110,7 +110,6 @@ function Slider({ slides, bgImage, bgColor }) {
             </div>
           </div>
         </div>
-        )
       </div>
     );
   }

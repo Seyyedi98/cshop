@@ -15,6 +15,19 @@ import ItemColors from "./ItemColors";
 function ProductCard({ item }) {
   const navigate = useNavigate();
 
+  const {
+    id,
+    title,
+    price,
+    subtitle,
+    description,
+    colors,
+    rating,
+    numRates,
+    images,
+  } = item;
+  const prodctImages = Object.values(images);
+
   // const [selectedColor, setSelectedColor] = useState(
   //   Object.values(item.colors[0])[0],
   // );
@@ -26,15 +39,15 @@ function ProductCard({ item }) {
           onClick={() => navigate(`/product/${item.id}`)}
           className="relative grid h-[250px] w-[92vw] cursor-pointer place-items-center overflow-hidden rounded-3xl bg-slate-50 sm:w-[296px]"
         >
-          {item.off && (
+          {item?.off && (
             <span className="absolute left-2 top-2 z-20 flex items-center justify-center gap-1 rounded-2xl bg-white px-3 py-1.5 text-xs font-medium text-slate-600 shadow-sm">
               <span className="text-base">
                 <RiWaterPercentLine />
               </span>
-              {item.off}% Discount
+              {item?.off}% Discount
             </span>
           )}
-          <img className="h-full object-cover" src={item.images[0]} />
+          <img className="h-full object-cover" src={prodctImages[0]} />
 
           <div className="absolute bottom-5 z-20 flex h-full w-full items-end justify-center gap-2 opacity-0 hover:animate-[fadeInUp_0.3s_ease-in-out] hover:opacity-100">
             <Link
@@ -63,17 +76,17 @@ function ProductCard({ item }) {
           <Bookmark />
         </span>
         <div className="p-2">
-          <ItemColors item={item} />
+          <ItemColors colors={colors} />
           <h4 className="mt-4 text-base font-semibold tracking-wide">
-            {item.title}
+            {title}
           </h4>
           <h5 className="mt-1 text-sm font-medium text-slate-500">
-            {item.subtitle}
+            {subtitle}
           </h5>
 
           <div className="mt-4 flex items-center justify-between">
-            <PriceTag price={item.price} />
-            <Rating rating={item.rating} numRates={item.numRates} />
+            <PriceTag price={price} />
+            <Rating rating={rating} numRates={numRates} />
           </div>
         </div>
       </div>

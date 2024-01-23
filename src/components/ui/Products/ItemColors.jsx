@@ -3,14 +3,13 @@
 
 import { useState } from "react";
 
-function ItemColors({ item, text }) {
-  const [selectedColor, setSelectedColor] = useState(
-    Object.values(item.colors[0])[0],
-  );
+function ItemColors({ text, colors }) {
+  // console.log(item.colors);
+  // console.log(colors);
+  const [selectedColor, setSelectedColor] = useState(Object.values(colors)[0]);
   const [selectedColorName, setSelectedColorName] = useState(
-    Object.keys(item.colors[0])[0],
+    Object.keys(colors)[0],
   );
-  let productColors, productColorsName;
 
   return (
     <ul className="w-full items-center gap-2.5">
@@ -21,28 +20,23 @@ function ItemColors({ item, text }) {
         </li>
       )}
       <div className="mt-2.5 flex gap-2">
-        {item.colors.map((colorObj) => {
-          productColors = Object.values(colorObj);
-          productColorsName = Object.keys(colorObj);
-          return productColors.map((color, index) => {
-            return (
-              <li key={Math.random()}>
-                <div
-                  onClick={() => {
-                    setSelectedColor(color),
-                      setSelectedColorName(productColorsName[index]);
-                  }}
-                  style={{
-                    backgroundColor: `${color}`,
-                    outlineColor: `${color}`,
-                  }}
-                  className={`h-[18px] w-[18px] cursor-pointer rounded-full border-2 outline-2 outline-offset-2 ${
-                    selectedColor === color && "outline"
-                  }`}
-                ></div>
-              </li>
-            );
-          });
+        {Object.entries(colors).map(([key, value]) => {
+          return (
+            <li key={Math.random()}>
+              <div
+                onClick={() => {
+                  setSelectedColor(value), setSelectedColorName(key);
+                }}
+                style={{
+                  backgroundColor: `${value}`,
+                  outlineColor: `${value}`,
+                }}
+                className={`h-[18px] w-[18px] cursor-pointer rounded-full border-2 outline-2 outline-offset-2 ${
+                  selectedColor === value && "outline"
+                }`}
+              ></div>
+            </li>
+          );
         })}
       </div>
     </ul>

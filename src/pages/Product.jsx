@@ -11,10 +11,21 @@ import { useState } from "react";
 import Button from "../components/ui/Buttons/Button";
 import Dropdown from "../components/ui/Dropdown";
 import { RiHandbagLine } from "react-icons/ri";
+import { useProduct } from "../features/products/useProduct";
 
 function Product() {
   const productId = useParams();
   const [numItems, setNumItems] = useState(1);
+  const { data, isLoading } = useProduct();
+
+  if (isLoading) return <p>Loading...</p>;
+
+  const { id, title, price, description, colors, rating, numRates, images } =
+    data;
+
+  const prodctImages = Object.values(images);
+  console.log(prodctImages);
+
   const product = products.find((p) => p.id == productId.id);
 
   return (
@@ -52,15 +63,15 @@ function Product() {
           {/* desc */}
           <div className="mt-8">
             <h4 className="mt-4 text-2xl font-semibold tracking-wide sm:text-3xl">
-              {product.title}
+              {title}
             </h4>
             <div className="mb-3.5 mt-5 flex items-center justify-start gap-4 sm:mt-8">
-              <PriceTag price={product.price} />
+              <PriceTag price={price} />
               {"|"}
-              <Rating rating={product.rating} numRates={product.numRates} />
+              <Rating rating={rating} numRates={numRates} />
             </div>
             <div className="mt-3.5 sm:mt-8">
-              <ItemColors text="Color" item={product} />
+              <ItemColors text="Color" colors={colors} />
             </div>
 
             <div className="mt-8 flex items-center justify-between gap-2">
@@ -100,9 +111,12 @@ Want more info about shipping, materials or care instructions? Here!"
         <article className="mb-2 mt-12 px-8 sm:mx-auto sm:max-w-[600px] sm:px-0 md:max-w-[700px] lg:max-w-[950px] xl:max-w-[1200px]">
           <h2 className="text-2xl font-semibold">Product Detail</h2>
           <p className="mt-4 text-base font-thin text-slate-600">
-            {product.description}
+            {description}
           </p>
         </article>
+        <hr className=" my-10 border-slate-200 " />
+        <div></div>
+        <hr className=" my-10 border-slate-200 " />
       </div>
     </>
   );
