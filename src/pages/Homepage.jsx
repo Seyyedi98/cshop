@@ -19,17 +19,18 @@ import PhotoGridProductCart from "../components/ui/Products/PhotoGridProductCart
 import Department from "../components/ui/Department";
 import Footer from "../components/Footer";
 import { useProducts } from "../features/products/useProducts";
+import { useLastestProducts } from "../features/products/useLastestProducts";
+import { useTopProducts } from "../features/products/useTopProducts";
 
 function Homepage() {
   const { data: products, isLoading: isLoadingProducts } = useProducts();
+  const { data: lastestProducts, isLoading: isLoadingLastestProducts } =
+    useLastestProducts();
+  const { data: topProducts, isLoading: isLoadingTopProducts } =
+    useTopProducts();
 
-  // const numNewArrivalItems = 6;
-  // const numBestSellingItems = 7;
-  // const newArrivalItems = products.slice(-{ numNewArrivalItems });
-  // const bestSellingItems = products.slice({ numBestSellingItems });
-  const test = topSells.slice(-5);
-
-  if (isLoadingProducts) return <p>Loading</p>;
+  if (isLoadingProducts || isLoadingLastestProducts || isLoadingTopProducts)
+    return <p>Loading</p>;
 
   return (
     <div className="overflow-hidden">
@@ -46,7 +47,7 @@ function Homepage() {
       <VerticalSlider
         title="New Arrivals. "
         subtitle="REY backpacks & bags"
-        items={products}
+        items={lastestProducts}
         overflow="hidden"
       >
         <ProductCard />
@@ -63,7 +64,7 @@ function Homepage() {
       <VerticalSlider
         title="Best Sellers. "
         subtitle="Best selling of the month"
-        items={products}
+        items={topProducts}
         overflow="hidden"
       >
         <ProductCard />

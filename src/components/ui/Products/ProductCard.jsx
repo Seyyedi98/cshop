@@ -15,17 +15,7 @@ import ItemColors from "./ItemColors";
 function ProductCard({ item }) {
   const navigate = useNavigate();
 
-  const {
-    id,
-    title,
-    price,
-    subtitle,
-    description,
-    colors,
-    rating,
-    numRates,
-    images,
-  } = item;
+  const { id, title, price, subtitle, colors, rating, numRates, images } = item;
   const prodctImages = Object.values(images);
 
   // const [selectedColor, setSelectedColor] = useState(
