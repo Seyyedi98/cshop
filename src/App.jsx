@@ -1,4 +1,4 @@
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import Homepage from "./pages/Homepage";
 import Shop from "./pages/Shop";
 import Checkout from "./pages/Checkout";
@@ -17,20 +17,21 @@ const queryClient = new QueryClient({
 
 function App() {
   return (
-    <BrowserRouter>
-      <QueryClientProvider client={queryClient}>
+    <QueryClientProvider client={queryClient}>
+      <BrowserRouter>
         <ScrollToTop />
         <Routes>
-          <Route path="/" element={<Homepage />} />
+          <Route index element={<Navigate replace to="home" />} />
+          <Route path="/home" element={<Homepage />} />
           <Route path="/shop" element={<Shop />} />
           <Route path="/checkout" element={<Checkout />} />
           <Route path="/cart" element={<Cart />} />
           <Route path="/product/:id" element={<Product />} />
           {/* <Route path="*" element={<Homepage />} /> */}
-          <Route path="*" element={<p>page not found</p>} />
+          <Route path="*" element={<Navigate replace to="home" />} />
         </Routes>
-      </QueryClientProvider>
-    </BrowserRouter>
+      </BrowserRouter>
+    </QueryClientProvider>
   );
 }
 

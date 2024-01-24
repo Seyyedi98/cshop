@@ -1,6 +1,5 @@
 /* eslint-disable no-unused-vars */
 import { useParams } from "react-router-dom";
-import { products } from "../data/data";
 import Header from "../components/Header";
 import Bookmark from "../components/ui/Buttons/Bookmark";
 import Rating from "../components/ui/rating";
@@ -12,13 +11,15 @@ import Button from "../components/ui/Buttons/Button";
 import Dropdown from "../components/ui/Dropdown";
 import { RiHandbagLine } from "react-icons/ri";
 import { useProduct } from "../features/products/useProduct";
+import Spinner from "../components/ui/Spinner";
+import Helmet from "../utils/Helmet";
 
 function Product() {
   const productId = useParams();
   const [numItems, setNumItems] = useState(1);
   const { data, isLoading } = useProduct();
 
-  if (isLoading) return <p>Loading...</p>;
+  if (isLoading) return <Spinner />;
 
   const { id, title, price, description, colors, rating, numRates, images } =
     data;
@@ -26,11 +27,12 @@ function Product() {
   const prodctImages = Object.values(images);
   console.log(prodctImages);
 
-  const product = products.find((p) => p.id == productId.id);
+  console.log(images.img1);
 
   return (
     <>
       <Header />
+      <Helmet title={title} />
       <div className="container mt-4 overflow-x-hidden lg:mt-12">
         {/* photoes and desc */}
         <div className="mx-6 grid grid-cols-1 sm:mx-auto sm:max-w-[600px] md:max-w-[700px] lg:max-w-[970px] lg:grid-cols-2 lg:gap-12 xl:max-w-[1200px]">
@@ -41,19 +43,19 @@ function Product() {
                 <Bookmark />
               </span>
               <img
-                src={product.images[0]}
+                src={images.img1}
                 alt="product image"
                 className="aspect-square w-[88vw] rounded-2xl bg-gray-100 object-cover"
               />
             </div>
             <div className="lg-h-[222px] flex w-full gap-2 sm:max-w-[296px] md:max-w-[346px]">
               <img
-                src={product.images[1]}
+                src={images.img2}
                 alt="product image"
                 className=" h-[80vw] w-[44vw] rounded-2xl bg-gray-100 object-cover lg:h-[370px] lg:w-[225px] xl:lg:w-[283px]"
               />
               <img
-                src={product.images[2]}
+                src={images.img3}
                 alt="product image"
                 className=" h-[80vw] w-[43vw] rounded-2xl bg-gray-100 object-cover lg:h-[370px] lg:w-[226px] xl:lg:w-[283px]"
               />

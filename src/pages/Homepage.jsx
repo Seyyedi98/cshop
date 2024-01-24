@@ -7,7 +7,7 @@ import Promo from "../components/Promos/Promo";
 import EarnPromo from "../components/Promos/EarnPromo";
 import CtaPromo from "../components/Promos/CtaPromo";
 
-import { topSells, slides, departments } from "../data/data";
+import { slides, departments } from "../data/data";
 import dots from "../assets/images/banner/dots.svg";
 
 import "../styles/styles.css";
@@ -21,6 +21,8 @@ import Footer from "../components/Footer";
 import { useProducts } from "../features/products/useProducts";
 import { useLastestProducts } from "../features/products/useLastestProducts";
 import { useTopProducts } from "../features/products/useTopProducts";
+import Spinner from "../components/ui/Spinner";
+import Helmet from "../utils/Helmet";
 
 function Homepage() {
   const { data: products, isLoading: isLoadingProducts } = useProducts();
@@ -30,11 +32,12 @@ function Homepage() {
     useTopProducts();
 
   if (isLoadingProducts || isLoadingLastestProducts || isLoadingTopProducts)
-    return <p>Loading</p>;
+    return <Spinner />;
 
   return (
     <div className="overflow-hidden">
       <Header />
+      <Helmet title={"Home"} />;
       <Banner />
       <VerticalSlider
         title=" Discover more. "
@@ -43,7 +46,6 @@ function Homepage() {
       >
         <DiscoverMoreItem />
       </VerticalSlider>
-
       <VerticalSlider
         title="New Arrivals. "
         subtitle="REY backpacks & bags"
@@ -52,15 +54,11 @@ function Homepage() {
       >
         <ProductCard />
       </VerticalSlider>
-
       <HowItWorks />
-
       <Promo>
         <EarnPromo />
       </Promo>
-
       <CategoriesBanner />
-
       <VerticalSlider
         title="Best Sellers. "
         subtitle="Best selling of the month"
@@ -69,11 +67,9 @@ function Homepage() {
       >
         <ProductCard />
       </VerticalSlider>
-
       <Promo bgColor="#fefce8" marginTop="162px" bgImage="bg-dotspattern">
         <SpecialOfferPromo bgImage={dots} />
       </Promo>
-
       <VerticalSlider
         title="Chosen by our experts"
         items={products}
@@ -81,7 +77,6 @@ function Homepage() {
       >
         <PhotoGridProductCart />
       </VerticalSlider>
-
       <VerticalSlider
         title="Shop by department"
         items={departments}
@@ -89,7 +84,6 @@ function Homepage() {
       >
         <Department />
       </VerticalSlider>
-
       <Promo
         bgColor="#f8fafc"
         marginTop="180px"
@@ -98,7 +92,6 @@ function Homepage() {
       >
         <CtaPromo bgImage={dots} />
       </Promo>
-
       <Footer />
     </div>
   );
