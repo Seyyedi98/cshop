@@ -1,6 +1,6 @@
 # React + Vite
 
-Preview: https://reat-cshop.netlify.app/home
+Preview: https://react-cshop.netlify.app/
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
