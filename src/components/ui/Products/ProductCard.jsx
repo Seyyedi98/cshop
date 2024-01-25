@@ -67,7 +67,10 @@ function ProductCard({ item }) {
         </span>
         <div className="p-2">
           <ItemColors colors={colors} />
-          <h4 className="mt-4 text-base font-semibold tracking-wide">
+          <h4
+            className="mt-4 cursor-pointer text-base font-semibold tracking-wide"
+            onClick={() => navigate(`/product/${item.id}`)}
+          >
             {title}
           </h4>
           <h5 className="mt-1 text-sm font-medium text-slate-500">

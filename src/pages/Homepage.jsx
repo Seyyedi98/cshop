@@ -22,7 +22,8 @@ import { useProducts } from "../features/products/useProducts";
 import { useLastestProducts } from "../features/products/useLastestProducts";
 import { useTopProducts } from "../features/products/useTopProducts";
 import Spinner from "../components/ui/Spinner";
-import Helmet from "../utils/Helmet";
+import Helmet from "../utils/helmet";
+import { useUser } from "../features/authentication/useUser";
 
 function Homepage() {
   const { data: products, isLoading: isLoadingProducts } = useProducts();
@@ -31,13 +32,16 @@ function Homepage() {
   const { data: topProducts, isLoading: isLoadingTopProducts } =
     useTopProducts();
 
+  const { data: user, isLoading: isLoadingUser, isAuthenticated } = useUser();
+  console.log(isAuthenticated);
+
   if (isLoadingProducts || isLoadingLastestProducts || isLoadingTopProducts)
     return <Spinner />;
 
   return (
     <div className="overflow-hidden">
       <Header />
-      <Helmet title={"Home"} />;
+      <Helmet title="Home" />
       <Banner />
       <VerticalSlider
         title=" Discover more. "

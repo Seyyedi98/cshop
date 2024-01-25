@@ -6,7 +6,7 @@ function Bookmark() {
 
   return (
     <button
-      className={`z-40 rounded-full bg-white p-1.5 text-2xl shadow-sm ${
+      className={`z-10 rounded-full bg-white p-1.5 text-2xl shadow-sm ${
         bookmark ? "text-red-500" : ""
       }`}
       onClick={() => setBookmark(!bookmark)}

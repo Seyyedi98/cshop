@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-function Button({ mt, children, color, animation, size, full }) {
+function Button({ mt, children, color, animation, size, full, action }) {
   let backgroundColor, textColor, backgroundHoverColor, border, buttonSize;
 
   if (color === "white") {
@@ -29,6 +29,10 @@ function Button({ mt, children, color, animation, size, full }) {
 
   return (
     <button
+      onClick={(e) => {
+        e.preventDefault();
+        action();
+      }}
       className={`focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 mt-${
         mt / 2
       } md:mt-${mt} text-center shadow-[32px_30px_124px_-37px_rgba(0,0,0,0.47)]

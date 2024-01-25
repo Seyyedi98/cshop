@@ -12,10 +12,9 @@ import Dropdown from "../components/ui/Dropdown";
 import { RiHandbagLine } from "react-icons/ri";
 import { useProduct } from "../features/products/useProduct";
 import Spinner from "../components/ui/Spinner";
-import Helmet from "../utils/Helmet";
+import Helmet from "../utils/helmet";
 
 function Product() {
-  const productId = useParams();
   const [numItems, setNumItems] = useState(1);
   const { data, isLoading } = useProduct();
 
@@ -23,11 +22,6 @@ function Product() {
 
   const { id, title, price, description, colors, rating, numRates, images } =
     data;
-
-  const prodctImages = Object.values(images);
-  console.log(prodctImages);
-
-  console.log(images.img1);
 
   return (
     <>
