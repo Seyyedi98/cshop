@@ -32,9 +32,6 @@ function Homepage() {
   const { data: topProducts, isLoading: isLoadingTopProducts } =
     useTopProducts();
 
-  const { data: user, isLoading: isLoadingUser, isAuthenticated } = useUser();
-  console.log(isAuthenticated);
-
   if (isLoadingProducts || isLoadingLastestProducts || isLoadingTopProducts)
     return <Spinner />;
 

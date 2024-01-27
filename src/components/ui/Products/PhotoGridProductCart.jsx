@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
 import PriceTag from "../priceTag";
-import Rating from "../rating";
+import Rating from "./Rating";
 
 /* eslint-disable react/prop-types */
 function PhotoGridProductCart({ item }) {

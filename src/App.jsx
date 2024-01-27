@@ -10,6 +10,7 @@ import Blog from "./pages/Blog";
 import SignIn from "./pages/SignIn";
 import SignUp from "./pages/SignUp";
 import { Toaster } from "react-hot-toast";
+import ProtectedRoute from "./components/ProtectedRoute";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -26,6 +27,7 @@ function App() {
       <BrowserRouter>
         <ScrollToTop />
         <Routes>
+          <Route element={<ProtectedRoute />}></Route>
           <Route path="/" element={<Homepage />} />
           <Route path="/shop" element={<Shop />} />
           <Route path="/checkout" element={<Checkout />} />
@@ -50,10 +52,11 @@ function App() {
             duration: 5000,
           },
           style: {
+            zindex: "100",
             fontSize: "16px",
             maxWidth: "500px",
             padding: "16px 24px",
-            backgroundColor: "var(--color-grey-0)",
+            backgroundColor: "white",
             color: "var(--color-grey-700)",
           },
         }}

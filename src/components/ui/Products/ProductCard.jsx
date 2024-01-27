@@ -6,7 +6,7 @@ import {
   RiWaterPercentLine,
 } from "react-icons/ri";
 import { Link, useNavigate } from "react-router-dom";
-import Rating from "../rating";
+import Rating from "./Rating";
 import PriceTag from "../priceTag";
 import Bookmark from "../Buttons/Bookmark";
 import ItemColors from "./ItemColors";

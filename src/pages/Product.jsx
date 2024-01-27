@@ -2,7 +2,7 @@
 import { useParams } from "react-router-dom";
 import Header from "../components/Header";
 import Bookmark from "../components/ui/Buttons/Bookmark";
-import Rating from "../components/ui/rating";
+import Rating from "../components/ui/Products/Rating";
 import PriceTag from "../components/ui/priceTag";
 import ItemColors from "../components/ui/Products/ItemColors";
 import ItemsCount from "../components/ui/Buttons/ItemsCount";
