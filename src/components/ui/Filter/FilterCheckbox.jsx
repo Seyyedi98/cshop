@@ -2,30 +2,57 @@
 /* eslint-disable react/prop-types */
 
 import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { useSearchParams } from "react-router-dom";
+import {
+  addCatFilter,
+  removeCatFilter,
+  removeColorFilter,
+  addColorFilter,
+} from "../../../features/slices/filterSlice";
 
 function FilterCheckbox({ filter, title }) {
+  const catFilter = useSelector((state) => state.filter.categories);
+  const colorFilter = useSelector((state) => state.filter.colors);
+  const dispatch = useDispatch();
+
   const [isChecked, setIsChecked] = useState(false);
   const [filterParams, setFilterParams] = useSearchParams();
 
+  const handleAddCatFilter = (newCategory) => {
+    if (title === "Categories") {
+      if (!isChecked) dispatch(addCatFilter(newCategory));
+      if (isChecked) dispatch(removeCatFilter(newCategory));
+    }
+    if (title === "Colors") {
+      if (!isChecked) dispatch(addColorFilter(newCategory));
+      if (isChecked) dispatch(removeColorFilter(newCategory));
+    }
+  };
+
   useEffect(
     function () {
-      if (isChecked) {
-        filterParams.set(title, filter);
+      if (title === "Categories" && catFilter.length > 0) {
+        filterParams.set(title, catFilter);
+        setFilterParams(filterParams);
+      }
+      if (title === "Colors" && colorFilter.length > 0) {
+        filterParams.set(title, colorFilter);
         setFilterParams(filterParams);
       }
     },
-    [isChecked, filter, filterParams, setFilterParams, title],
+    [catFilter, colorFilter, filterParams, title, setFilterParams],
   );
-
-  // Now hould implement these in redux
 
   return (
     <div className="flex items-center gap-3">
       <label className="relative flex cursor-pointer items-center rounded-full ">
         <input
           checked={isChecked}
-          onChange={() => setIsChecked(!isChecked)}
+          onChange={() => {
+            setIsChecked(!isChecked);
+            handleAddCatFilter(filter);
+          }}
           type="checkbox"
           id={filter}
           className="peer relative h-5 w-5 
