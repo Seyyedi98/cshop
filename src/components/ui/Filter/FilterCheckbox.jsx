@@ -15,9 +15,9 @@ function FilterCheckbox({ filter, title }) {
   const catFilter = useSelector((state) => state.filter.categories);
   const colorFilter = useSelector((state) => state.filter.colors);
   const dispatch = useDispatch();
-
-  const [isChecked, setIsChecked] = useState(false);
-  const [filterParams, setFilterParams] = useSearchParams();
+  const [isChecked, setIsChecked] = useState(
+    catFilter.includes(filter) || colorFilter.includes(filter),
+  );
 
   const handleAddCatFilter = (newCategory) => {
     if (title === "Categories") {
@@ -29,20 +29,6 @@ function FilterCheckbox({ filter, title }) {
       if (isChecked) dispatch(removeColorFilter(newCategory));
     }
   };
-
-  useEffect(
-    function () {
-      if (title === "Categories" && catFilter.length > 0) {
-        filterParams.set(title, catFilter);
-        setFilterParams(filterParams);
-      }
-      if (title === "Colors" && colorFilter.length > 0) {
-        filterParams.set(title, colorFilter);
-        setFilterParams(filterParams);
-      }
-    },
-    [catFilter, colorFilter, filterParams, title, setFilterParams],
-  );
 
   return (
     <div className="flex items-center gap-3">

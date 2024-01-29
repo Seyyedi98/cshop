@@ -1,7 +1,14 @@
 import Header from "../components/Header";
 import Filter from "../components/ui/Filter/filter";
+import ProductCard from "../components/ui/Products/ProductCard";
+import Spinner from "../components/ui/Spinner";
+import { useProducts } from "../features/products/useProducts";
 
 function Shop() {
+  const { isLoading, data } = useProducts();
+
+  if (data === null) console.log("No Data");
+
   return (
     <div>
       <Header />
@@ -20,7 +27,17 @@ function Shop() {
           <aside className="w-1/4">
             <Filter />
           </aside>
-          <main className="w-3/4"></main>
+          <main className="w-3/4">
+            <div className="grid grid-cols-3 gap-8">
+              {isLoading ? (
+                <Spinner />
+              ) : data ? (
+                data.map((item) => <ProductCard key={item.id} item={item} />)
+              ) : (
+                <h1>No product found!</h1>
+              )}
+            </div>
+          </main>
         </div>
       </section>
     </div>
