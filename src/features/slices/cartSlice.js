@@ -1,8 +1,15 @@
 /* eslint-disable no-unused-vars */
 import { createSlice } from "@reduxjs/toolkit";
 
+const storedValue = localStorage.getItem("cartLocalData");
+const value = storedValue ? JSON.parse(storedValue) : [];
+
+const updateLocalStorageCart = function (data) {
+  localStorage.setItem("cartLocalData", JSON.stringify(data));
+};
+
 const initialState = {
-  cart: [],
+  cart: value,
 };
 
 const cartSlice = createSlice({
@@ -11,6 +18,7 @@ const cartSlice = createSlice({
   reducers: {
     addToCart(state, action) {
       state.cart = [...state.cart, action.payload];
+      updateLocalStorageCart(state.cart);
     },
 
     updateQuantity(state, action) {
@@ -20,6 +28,7 @@ const cartSlice = createSlice({
           item.cartColor === action.payload.cartColor,
       );
       item.cartNumItems = action.payload.numItems;
+      updateLocalStorageCart(state.cart);
     },
 
     removeFromCart(state, action) {
@@ -28,6 +37,7 @@ const cartSlice = createSlice({
           item.id !== action.payload.id ||
           item.cartColor !== action.payload.cartColor,
       );
+      updateLocalStorageCart(state.cart);
     },
 
     clearCart(state) {
