@@ -25,10 +25,7 @@ function ProductCard({ item }) {
   return (
     <div>
       <div className="h[300px] relative">
-        <div
-          onClick={() => navigate(`/product/${item.id}`)}
-          className="relative grid h-[250px] w-[92vw] cursor-pointer place-items-center overflow-hidden rounded-3xl bg-slate-50 sm:w-[296px]"
-        >
+        <div className="relative grid h-[250px] w-[92vw] cursor-pointer place-items-center overflow-hidden rounded-3xl bg-slate-50 sm:w-[296px]">
           {item?.off && (
             <span className="absolute left-2 top-2 z-20 flex items-center justify-center gap-1 rounded-2xl bg-white px-3 py-1.5 text-xs font-medium text-slate-600 shadow-sm">
               <span className="text-base">
@@ -39,7 +36,10 @@ function ProductCard({ item }) {
           )}
           <img className="h-full object-cover" src={prodctImages[0]} />
 
-          <div className="absolute bottom-5 z-20 flex h-full w-full items-end justify-center gap-2 opacity-0 hover:animate-[fadeInUp_0.3s_ease-in-out] hover:opacity-100">
+          <div
+            onClick={() => navigate(`/product/${item.id}`)}
+            className="absolute bottom-5 z-20 flex h-full w-full items-end justify-center gap-2 opacity-0 hover:animate-[fadeInUp_0.3s_ease-in-out] hover:opacity-100"
+          >
             <Link
               className="flex items-center justify-center gap-1 rounded-2xl bg-white px-3 py-1.5 text-xs font-medium text-slate-600
                shadow-md transition-all duration-100 hover:bg-slate-50 hover:shadow-lg"
@@ -50,7 +50,7 @@ function ProductCard({ item }) {
               </span>
               Go to product
             </Link>
-            <button
+            {/* <button
               className="flex items-center justify-center gap-1 rounded-2xl bg-slate-900
              px-3 py-1.5 text-xs font-medium text-slate-50 shadow-md transition-all duration-100 hover:bg-slate-700 hover:shadow-lg"
             >
@@ -58,13 +58,13 @@ function ProductCard({ item }) {
                 <RiFullscreenFill />
               </span>
               Quick View
-            </button>
+            </button> */}
           </div>
+          <span className="absolute right-3 top-3 z-40">
+            <Bookmark />
+          </span>
         </div>
 
-        <span className="absolute right-3 top-3 z-40">
-          <Bookmark />
-        </span>
         <div className="p-2">
           <ItemColors colors={colors} />
           <h4

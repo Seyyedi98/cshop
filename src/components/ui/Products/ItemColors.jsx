@@ -1,15 +1,17 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
-function ItemColors({ text, colors }) {
-  // console.log(item.colors);
-  // console.log(colors);
+function ItemColors({ text, colors, cartColor, setCartColor }) {
   const [selectedColor, setSelectedColor] = useState(Object.values(colors)[0]);
   const [selectedColorName, setSelectedColorName] = useState(
     Object.keys(colors)[0],
   );
+
+  useEffect(() => {
+    if (setCartColor && cartColor === "") setCartColor(Object.keys(colors)[0]);
+  }, [cartColor, colors, setCartColor]);
 
   return (
     <ul className="w-full items-center gap-2.5">
@@ -25,7 +27,9 @@ function ItemColors({ text, colors }) {
             <li key={Math.random()}>
               <div
                 onClick={() => {
-                  setSelectedColor(value), setSelectedColorName(key);
+                  setSelectedColor(value),
+                    setSelectedColorName(key),
+                    setCartColor && setCartColor(key);
                 }}
                 style={{
                   backgroundColor: `${value}`,

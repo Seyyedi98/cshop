@@ -11,8 +11,8 @@ function SignIn() {
   const { isAuthenticated } = useUser();
 
   const navigate = useNavigate();
-  const [email, setEmail] = useState("mr.seyyedi76@gmail.com");
-  const [password, setPassword] = useState("sabinesabine");
+  const [email, setEmail] = useState();
+  const [password, setPassword] = useState();
 
   const resetForm = function () {
     setEmail("");

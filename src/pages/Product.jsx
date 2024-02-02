@@ -1,5 +1,5 @@
+/* eslint-disable react-hooks/rules-of-hooks */
 /* eslint-disable no-unused-vars */
-import { useParams } from "react-router-dom";
 import Header from "../components/Header";
 import Bookmark from "../components/ui/Buttons/Bookmark";
 import Rating from "../components/ui/Products/Rating";
@@ -13,15 +13,26 @@ import { RiHandbagLine } from "react-icons/ri";
 import { useProduct } from "../features/products/useProduct";
 import Spinner from "../components/ui/Spinner";
 import Helmet from "../utils/helmet";
+import { useDispatch, useSelector } from "react-redux";
+import { addToCart, updateQuantity } from "../features/slices/cartSlice";
 
 function Product() {
   const [numItems, setNumItems] = useState(1);
+  const [cartColor, setCartColor] = useState("");
   const { data, isLoading } = useProduct();
+  const cart = useSelector((state) => state.cart.cart);
+  const dispatch = useDispatch();
 
   if (isLoading) return <Spinner />;
 
   const { id, title, price, description, colors, rating, numRates, images } =
     data;
+
+  const item = cart.find(
+    (item) => item.id === id && item.cartColor === cartColor,
+  );
+
+  const isInCart = item ? true : false;
 
   return (
     <>
@@ -67,15 +78,47 @@ function Product() {
               <Rating rating={rating} numRates={numRates} />
             </div>
             <div className="mt-3.5 sm:mt-8">
-              <ItemColors text="Color" colors={colors} />
+              <ItemColors
+                text="Color"
+                colors={colors}
+                setCartColor={setCartColor}
+                cartColor={cartColor}
+              />
             </div>
 
             <div className="mt-8 flex items-center justify-between gap-2">
-              <ItemsCount numItems={numItems} setNumItems={setNumItems} />
-              <Button size="medium" color="black" full="full">
-                <RiHandbagLine />
-                Add To cart
-              </Button>
+              {isInCart ? (
+                <>
+                  <ItemsCount
+                    numItems={numItems}
+                    setNumItems={setNumItems}
+                    onClick={dispatch(updateQuantity({ id, numItems }))}
+                  />
+                  <p className="text-md font-medium">
+                    <span className="text-red-500">5</span> Items in cart
+                  </p>
+                </>
+              ) : (
+                <Button
+                  size="medium"
+                  color="black"
+                  full="full"
+                  action={() =>
+                    dispatch(
+                      addToCart({
+                        id,
+                        title,
+                        cartColor,
+                        cartNumItems: numItems,
+                        price,
+                      }),
+                    )
+                  }
+                >
+                  <RiHandbagLine />
+                  Add To cart
+                </Button>
+              )}
             </div>
 
             <hr className=" my-10 border-slate-200 " />

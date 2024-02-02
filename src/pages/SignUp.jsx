@@ -12,9 +12,9 @@ function SignUp() {
   const { isAuthenticated } = useUser();
 
   const navigate = useNavigate();
-  const [email, setEmail] = useState("mr.seyyedi76@gmail.com");
-  const [fullName, setFullName] = useState("Sabine");
-  const [password, setPassword] = useState("sabinesabine");
+  const [email, setEmail] = useState();
+  const [fullName, setFullName] = useState();
+  const [password, setPassword] = useState();
 
   const resetForm = function () {
     setEmail("");

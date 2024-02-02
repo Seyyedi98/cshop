@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import {
   RiLoginBoxLine,
   RiSearchLine,
@@ -10,11 +11,20 @@ import { useNavigate } from "react-router-dom";
 import ProfileDropDown from "../../profileDropDown";
 import { useState } from "react";
 import { useUser } from "../../../features/authentication/useUser";
+import { useSelector } from "react-redux";
+import { useOutsideClick } from "../../../hooks/useOutsideClick";
+import CartDropDown from "../CartDropDown";
 
 function NavButtons() {
+  const cartData = useSelector((state) => state.cart.cart);
   const { isAuthenticated } = useUser();
-  const [isOpen, setIsOpen] = useState(false);
+  const [isProfileOpen, setIsProfileOpen] = useState(false);
+  const [isCartOpen, setIsCartOpen] = useState(false);
+  const cartRef = useOutsideClick(() => setIsCartOpen(false));
+  const profileRef = useOutsideClick(() => setIsProfileOpen(false));
   const navigate = useNavigate();
+
+  const isItemsinCart = cartData.length > 0;
 
   return (
     <div className="flex justify-between lg:gap-x-1">
@@ -24,21 +34,23 @@ function NavButtons() {
 
       {!isAuthenticated && (
         <div onClick={() => navigate("/signin")}>
-          <NavButton showMenu="true">
+          <NavButton>
             <RiLoginBoxLine />
           </NavButton>
         </div>
       )}
 
       {isAuthenticated && (
-        <div>
-          <div onClick={() => setIsOpen(!isOpen)}>
-            <NavButton showMenu="true">
+        <div ref={profileRef}>
+          <div onClick={() => setIsProfileOpen(!isProfileOpen)}>
+            <NavButton>
               <RiUserLine />
             </NavButton>
           </div>
 
-          <div className={`relative ${isOpen ? "visible" : "invisible"}`}>
+          <div
+            className={`relative ${isProfileOpen ? "visible" : "invisible"}`}
+          >
             <div className="absolute left-[50%] top-2">
               <ProfileDropDown />
             </div>
@@ -46,8 +58,25 @@ function NavButtons() {
         </div>
       )}
 
-      <NavButton showMenu="true">
-        <RiShoppingCart2Line />
+      <NavButton>
+        <div ref={cartRef}>
+          <div className="relative" onClick={() => setIsCartOpen(!isCartOpen)}>
+            {isItemsinCart && (
+              <span
+                className="absolute -right-2 -top-2.5 flex h-4 w-4 items-center
+           justify-center rounded-full bg-sky-500 text-xs text-white"
+              >
+                {cartData.length}
+              </span>
+            )}
+            <RiShoppingCart2Line />
+          </div>
+          <div className={`relative ${isCartOpen ? "visible" : "invisible"}`}>
+            <div className="absolute left-[50%] top-2">
+              <CartDropDown />
+            </div>
+          </div>
+        </div>
       </NavButton>
     </div>
   );
