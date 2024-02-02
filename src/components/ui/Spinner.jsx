@@ -1,6 +1,6 @@
 function Spinner() {
   return (
-    <div className="grid h-full w-full place-items-center" role="status">
+    <div className="grid h-screen w-screen place-items-center" role="status">
       <svg
         aria-hidden="true"
         className="h-14 w-14 animate-spin fill-blue-600 text-gray-200"

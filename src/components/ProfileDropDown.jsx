@@ -20,7 +20,7 @@ function ProfileDropDown() {
   if (user)
     return (
       <div
-        className="flex w-64 flex-col gap-1 rounded-3xl border-2 border-solid 
+        className="flex w-64 flex-col gap-1 rounded-2xl border-2 border-solid 
     border-slate-200 bg-white p-4 shadow-lg"
       >
         <div className="flex gap-2">

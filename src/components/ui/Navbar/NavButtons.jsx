@@ -13,7 +13,7 @@ import { useState } from "react";
 import { useUser } from "../../../features/authentication/useUser";
 import { useSelector } from "react-redux";
 import { useOutsideClick } from "../../../hooks/useOutsideClick";
-import CartDropDown from "../CartDropDown";
+import CartDropDown from "../Cart/CartDropDown";
 
 function NavButtons() {
   const cartData = useSelector((state) => state.cart.cart);
@@ -33,7 +33,7 @@ function NavButtons() {
       </NavButton>
 
       {!isAuthenticated && (
-        <div onClick={() => navigate("/signin")}>
+        <div className="cursor-pointer" onClick={() => navigate("/signin")}>
           <NavButton>
             <RiLoginBoxLine />
           </NavButton>
@@ -42,16 +42,21 @@ function NavButtons() {
 
       {isAuthenticated && (
         <div ref={profileRef}>
-          <div onClick={() => setIsProfileOpen(!isProfileOpen)}>
+          <div
+            className="cursor-pointer"
+            onClick={() => setIsProfileOpen(!isProfileOpen)}
+          >
             <NavButton>
               <RiUserLine />
             </NavButton>
           </div>
 
           <div
-            className={`relative ${isProfileOpen ? "visible" : "invisible"}`}
+            className={`relative animate-[fadeInUp_0.2s_forwards] ${
+              isProfileOpen ? "block" : "hidden"
+            }`}
           >
-            <div className="absolute left-[50%] top-2">
+            <div className="absolute top-2 md:right-0">
               <ProfileDropDown />
             </div>
           </div>
@@ -60,7 +65,10 @@ function NavButtons() {
 
       <NavButton>
         <div ref={cartRef}>
-          <div className="relative" onClick={() => setIsCartOpen(!isCartOpen)}>
+          <div
+            className="relative cursor-pointer"
+            onClick={() => setIsCartOpen(!isCartOpen)}
+          >
             {isItemsinCart && (
               <span
                 className="absolute -right-2 -top-2.5 flex h-4 w-4 items-center
@@ -71,8 +79,12 @@ function NavButtons() {
             )}
             <RiShoppingCart2Line />
           </div>
-          <div className={`relative ${isCartOpen ? "visible" : "invisible"}`}>
-            <div className="absolute left-[50%] top-2">
+          <div
+            className={`relative animate-[fadeInUp_0.2s_forwards] ${
+              isCartOpen ? "block" : "hidden"
+            }`}
+          >
+            <div className="absolute top-6 md:right-0">
               <CartDropDown />
             </div>
           </div>

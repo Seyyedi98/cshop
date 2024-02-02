@@ -7,7 +7,7 @@ function NavButton({ children, showMenu }) {
 
   return (
     <div
-      className="cursor-pointer rounded-full px-1 py-3 text-xl hover:bg-slate-100 sm:px-2 md:p-3 md:text-xl"
+      className=" rounded-full px-1 py-3 text-xl hover:bg-slate-100 sm:px-2 md:p-3 md:text-xl"
       onClick={() => setIsOpen(!isOpen)}
     >
       {children}

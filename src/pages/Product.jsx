@@ -1,12 +1,11 @@
 /* eslint-disable react-hooks/rules-of-hooks */
-/* eslint-disable no-unused-vars */
 import Header from "../components/Header";
 import Bookmark from "../components/ui/Buttons/Bookmark";
 import Rating from "../components/ui/Products/Rating";
 import PriceTag from "../components/ui/priceTag";
 import ItemColors from "../components/ui/Products/ItemColors";
 import ItemsCount from "../components/ui/Buttons/ItemsCount";
-import { memo, useEffect, useState } from "react";
+import { memo, useState } from "react";
 import Button from "../components/ui/Buttons/Button";
 import Dropdown from "../components/ui/Dropdown";
 import { RiHandbagLine } from "react-icons/ri";
@@ -14,14 +13,15 @@ import { useProduct } from "../features/products/useProduct";
 import Spinner from "../components/ui/Spinner";
 import Helmet from "../utils/helmet";
 import { useDispatch, useSelector } from "react-redux";
-import { addToCart, updateQuantity } from "../features/slices/cartSlice";
+import { addToCart } from "../features/slices/cartSlice";
+import { useParams } from "react-router-dom";
 
 const MemoizedHeader = memo(Header);
 
 function Product() {
-  // const [numItems, setNumItems] = useState(1);
+  const productId = useParams().id.toString();
   const [cartColor, setCartColor] = useState("");
-  const { data, isLoading, error } = useProduct();
+  const { data, isLoading, error } = useProduct({ productId });
   const cart = useSelector((state) => state.cart.cart);
   const dispatch = useDispatch();
 

@@ -33,7 +33,9 @@ function Button({ mt, children, color, animation, size, full, action }) {
       className={`focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 mt-${
         mt / 2
       } md:mt-${mt} text-center shadow-[32px_30px_124px_-37px_rgba(0,0,0,0.47)]
-       ${animation} flex items-center justify-center gap-2 rounded-full transition-all 
+       ${animation} ${
+         animation && "transition-all"
+       } flex items-center justify-center gap-2 rounded-full 
         ${backgroundHoverColor} ${backgroundColor} ${textColor} ${border} ${buttonSize} ${
           full && "w-full"
         }`}

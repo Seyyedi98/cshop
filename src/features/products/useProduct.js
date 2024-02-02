@@ -1,9 +1,9 @@
 import { useQuery } from "react-query";
 import { getProduct } from "../../services/apiProducts";
-import { useParams } from "react-router-dom";
+// import { useParams } from "react-router-dom";
 
-export function useProduct() {
-  const id = useParams().id.toString();
+export function useProduct({ productId: id }) {
+  // const id = useParams()?.id.toString();
 
   const { isLoading, data, error } = useQuery({
     queryKey: ["product", id],
