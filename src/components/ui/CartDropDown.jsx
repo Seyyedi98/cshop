@@ -5,7 +5,7 @@ import { useSelector } from "react-redux";
 
 function CartDropDown() {
   const products = useSelector((state) => state.cart.cart);
-  console.log(products);
+  // console.log(products);
 
   return (
     <div
@@ -13,10 +13,14 @@ function CartDropDown() {
     border-slate-200 bg-white p-4 shadow-lg"
     >
       <h4 className="text-base font-semibold">Shopping cart</h4>
-
-      {products.map((product) => (
-        <p key={product.id}>{product.title}</p>
-      ))}
+      <ul>
+        {products.map((product) => (
+          <li className="flex gap-4" key={product.id}>
+            <span className="text-sm">{product.title}</span>
+            <span className="text-sm">x {product.cartNumItems}</span>
+          </li>
+        ))}
+      </ul>
 
       <hr className="border-slate-300" />
     </div>

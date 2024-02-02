@@ -14,12 +14,20 @@ const cartSlice = createSlice({
     },
 
     updateQuantity(state, action) {
-      const item = state.cart.find((item) => item.id === action.payload.id);
+      const item = state.cart.find(
+        (item) =>
+          item.id === action.payload.id &&
+          item.cartColor === action.payload.cartColor,
+      );
       item.cartNumItems = action.payload.numItems;
     },
 
     removeFromCart(state, action) {
-      state.cart = state.cart.filter((item) => item.id !== action.payload);
+      state.cart = state.cart.filter(
+        (item) =>
+          item.id !== action.payload.id ||
+          item.cartColor !== action.payload.cartColor,
+      );
     },
 
     clearCart(state) {

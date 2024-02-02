@@ -6,7 +6,7 @@ import Rating from "../components/ui/Products/Rating";
 import PriceTag from "../components/ui/priceTag";
 import ItemColors from "../components/ui/Products/ItemColors";
 import ItemsCount from "../components/ui/Buttons/ItemsCount";
-import { useState } from "react";
+import { memo, useEffect, useState } from "react";
 import Button from "../components/ui/Buttons/Button";
 import Dropdown from "../components/ui/Dropdown";
 import { RiHandbagLine } from "react-icons/ri";
@@ -16,14 +16,17 @@ import Helmet from "../utils/helmet";
 import { useDispatch, useSelector } from "react-redux";
 import { addToCart, updateQuantity } from "../features/slices/cartSlice";
 
+const MemoizedHeader = memo(Header);
+
 function Product() {
-  const [numItems, setNumItems] = useState(1);
+  // const [numItems, setNumItems] = useState(1);
   const [cartColor, setCartColor] = useState("");
-  const { data, isLoading } = useProduct();
+  const { data, isLoading, error } = useProduct();
   const cart = useSelector((state) => state.cart.cart);
   const dispatch = useDispatch();
 
   if (isLoading) return <Spinner />;
+  if (error) return error.message;
 
   const { id, title, price, description, colors, rating, numRates, images } =
     data;
@@ -36,7 +39,7 @@ function Product() {
 
   return (
     <>
-      <Header />
+      <MemoizedHeader />
       <Helmet title={title} />
       <div className="container mt-4 overflow-x-hidden lg:mt-12">
         {/* photoes and desc */}
@@ -89,13 +92,10 @@ function Product() {
             <div className="mt-8 flex items-center justify-between gap-2">
               {isInCart ? (
                 <>
-                  <ItemsCount
-                    numItems={numItems}
-                    setNumItems={setNumItems}
-                    onClick={dispatch(updateQuantity({ id, numItems }))}
-                  />
+                  <ItemsCount item={item} cartColor={cartColor} />
                   <p className="text-md font-medium">
-                    <span className="text-red-500">5</span> Items in cart
+                    <span className="text-red-500">{item.cartNumItems} </span>
+                    Items in cart
                   </p>
                 </>
               ) : (
@@ -109,7 +109,7 @@ function Product() {
                         id,
                         title,
                         cartColor,
-                        cartNumItems: numItems,
+                        cartNumItems: 1,
                         price,
                       }),
                     )
