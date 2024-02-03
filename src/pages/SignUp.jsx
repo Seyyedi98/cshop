@@ -113,7 +113,10 @@ function SignUp() {
                   size="medium"
                   color="black"
                   full
-                  action={() => onSubmit()}
+                  action={(e) => {
+                    e.preventDefault();
+                    onSubmit();
+                  }}
                 >
                   Sign up
                 </Button>
@@ -121,7 +124,7 @@ function SignUp() {
                   Allready have an account?{" "}
                   <Link
                     to={"/signin"}
-                    className="text-primary-600 font-medium hover:underline"
+                    className="font-medium text-sky-500 hover:underline"
                   >
                     Sign in
                   </Link>

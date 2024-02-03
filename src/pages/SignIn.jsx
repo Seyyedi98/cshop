@@ -89,7 +89,6 @@ function SignIn() {
                         aria-describedby="remember"
                         type="checkbox"
                         className="focus:ring-3 focus:ring-primary-300 h-4 w-4 rounded border border-gray-300 bg-gray-50"
-                        required
                       />
                     </div>
                     <div className="ml-3 text-sm">
@@ -109,7 +108,8 @@ function SignIn() {
                   size="medium"
                   color="black"
                   full
-                  action={() => {
+                  action={(e) => {
+                    e.PreventDefault();
                     onSubmit();
                   }}
                 >
@@ -119,7 +119,7 @@ function SignIn() {
                   Don’t have an account yet?{" "}
                   <Link
                     to={"/signup"}
-                    className="text-primary-600 font-medium hover:underline"
+                    className="font-medium text-sky-500 hover:underline"
                   >
                     Sign up
                   </Link>

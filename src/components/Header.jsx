@@ -35,7 +35,7 @@ function Header() {
           >
             <MenuItems />
           </div>
-          <div className="order-1">
+          <div className={`order-1 ${isOpen && "invisible"}`}>
             <NavButtons />
           </div>
 

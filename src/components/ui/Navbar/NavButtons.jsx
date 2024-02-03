@@ -80,12 +80,12 @@ function NavButtons() {
             <RiShoppingCart2Line />
           </div>
           <div
-            className={`relative animate-[fadeInUp_0.2s_forwards] ${
+            className={`fixed left-0 top-0 animate-[fadeInUp_0.2s_forwards] md:relative ${
               isCartOpen ? "block" : "hidden"
             }`}
           >
-            <div className="absolute top-6 md:right-0">
-              <CartDropDown />
+            <div className="absolute md:right-0 md:top-6">
+              <CartDropDown setIsCartOpen={setIsCartOpen} />
             </div>
           </div>
         </div>
