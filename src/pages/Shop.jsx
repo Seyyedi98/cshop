@@ -6,8 +6,6 @@ import { useProducts } from "../features/products/useProducts";
 
 function Shop() {
   const { isLoading, data } = useProducts();
-  // console.log(data);
-  // console.log(data?.length);
 
   if (data === null) console.log("No Data");
 

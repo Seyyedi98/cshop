@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import supabase from "./supabase";
 
 export async function signup({ email, password, fullName }) {
@@ -7,6 +8,7 @@ export async function signup({ email, password, fullName }) {
     options: {
       data: {
         fullName,
+        bookmarks: [],
       },
     },
   });
@@ -42,4 +44,34 @@ export async function getCurrentUser() {
 export async function logout() {
   const { error } = await supabase.auth.signOut();
   if (error) throw new Error(error.message);
+}
+
+export async function updateUserBookmarks({
+  oldBookmarks,
+  newBookmark,
+  isBookmark,
+}) {
+  // Convert array to Set to remove duplicate values
+  const bookmarksSet = new Set(oldBookmarks);
+
+  if (isBookmark) {
+    const updatedBookmarks = oldBookmarks.push(newBookmark.id);
+  }
+
+  if (!isBookmark) {
+    const updatedBookmarks = oldBookmarks.filter(
+      (bookmark) => bookmark !== newBookmark.id,
+    );
+  }
+
+  // Convert Set to array to prevent supabase database error
+  const newBookmrks = Array.from(bookmarksSet);
+
+  const { data: bookmark, error } = await supabase.auth.updateUser({
+    data: { bookmarks: newBookmrks },
+  });
+
+  if (error) throw new Error(error.message);
+
+  return bookmark;
 }

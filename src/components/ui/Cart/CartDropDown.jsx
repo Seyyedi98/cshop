@@ -15,7 +15,7 @@ function CartDropDown({ setIsCartOpen }) {
   return (
     <div
       className="flex h-screen w-screen flex-col gap-1 rounded-2xl border-2 border-solid border-slate-200 bg-white 
-    p-4 shadow-lg md:h-[600px] md:w-[450px]"
+    p-4 shadow-lg md:h-full md:w-[450px]"
     >
       {products.length > 0 && (
         <>
@@ -29,7 +29,7 @@ function CartDropDown({ setIsCartOpen }) {
             </h4>
           </span>
 
-          <ul className="overflow-y-scroll overscroll-contain pr-2">
+          <ul className="h-full overflow-y-scroll overscroll-contain pr-2 md:max-h-[370px]">
             {products.map((product) => (
               <CartItemRow key={product.id} product={product} />
             ))}

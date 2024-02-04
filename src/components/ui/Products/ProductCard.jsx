@@ -1,15 +1,12 @@
 /* eslint-disable no-unused-vars */
 
-import {
-  RiFullscreenFill,
-  RiShoppingBag2Line,
-  RiWaterPercentLine,
-} from "react-icons/ri";
+import { RiShoppingBag2Line, RiWaterPercentLine } from "react-icons/ri";
 import { Link, useNavigate } from "react-router-dom";
 import Rating from "./Rating";
 import PriceTag from "../priceTag";
 import Bookmark from "../Buttons/Bookmark";
 import ItemColors from "./ItemColors";
+import { useUser } from "../../../features/authentication/useUser";
 
 /* eslint-disable react/prop-types */
 function ProductCard({ item }) {
@@ -35,7 +32,6 @@ function ProductCard({ item }) {
             </span>
           )}
           <img className="h-full object-cover" src={prodctImages[0]} />
-
           <div
             onClick={() => navigate(`/product/${item.id}`)}
             className="absolute bottom-5 z-20 flex h-full w-full items-end justify-center gap-2 opacity-0 hover:animate-[fadeInUp_0.3s_ease-in-out] hover:opacity-100"
@@ -61,7 +57,7 @@ function ProductCard({ item }) {
             </button> */}
           </div>
           <span className="absolute right-3 top-3 z-40">
-            <Bookmark />
+            <Bookmark id={id} />
           </span>
         </div>
 

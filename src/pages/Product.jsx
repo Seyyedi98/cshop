@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable react-hooks/rules-of-hooks */
 import Header from "../components/Header";
 import Bookmark from "../components/ui/Buttons/Bookmark";
@@ -15,6 +16,8 @@ import Helmet from "../utils/helmet";
 import { useDispatch, useSelector } from "react-redux";
 import { addToCart } from "../features/slices/cartSlice";
 import { useParams } from "react-router-dom";
+import { useUser } from "../features/authentication/useUser";
+import { useBookmarks } from "../features/authentication/useBookmarks";
 
 const MemoizedHeader = memo(Header);
 
@@ -48,7 +51,7 @@ function Product() {
           <div className="">
             <div className="relative mb-2">
               <span className="absolute right-[5%] top-[2%] z-40">
-                <Bookmark />
+                <Bookmark id={id} />
               </span>
               <img
                 src={images.img1}
