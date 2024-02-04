@@ -16,8 +16,6 @@ import Helmet from "../utils/helmet";
 import { useDispatch, useSelector } from "react-redux";
 import { addToCart } from "../features/slices/cartSlice";
 import { useParams } from "react-router-dom";
-import { useUser } from "../features/authentication/useUser";
-import { useBookmarks } from "../features/authentication/useBookmarks";
 
 const MemoizedHeader = memo(Header);
 

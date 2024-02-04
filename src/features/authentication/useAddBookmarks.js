@@ -1,16 +1,16 @@
 /* eslint-disable no-unused-vars */
 import { useMutation, useQueryClient } from "react-query";
-import { updateUserBookmarks } from "../../services/apiAuth";
+import { addUserBookmarks } from "../../services/apiAuth";
 import toast from "react-hot-toast";
 
-export function useBookmarks() {
+export function useAddBookmarks() {
   const queryClient = useQueryClient();
 
   const { mutate: updateBookmark, isLoading } = useMutation({
-    mutationFn: updateUserBookmarks,
+    mutationFn: addUserBookmarks,
 
     onSuccess: ({ bookmark }) => {
-      toast.success("Product added to your favourites list");
+      toast.success("Your favourites list has been updated");
 
       queryClient.setQueryData(["bookmark"], bookmark);
     },

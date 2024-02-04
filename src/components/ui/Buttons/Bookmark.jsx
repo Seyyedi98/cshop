@@ -2,12 +2,12 @@
 import { useEffect, useState } from "react";
 import { RiHeartFill, RiHeartLine } from "react-icons/ri";
 import { useUser } from "../../../features/authentication/useUser";
-import { useBookmarks } from "../../../features/authentication/useBookmarks";
+import { useAddBookmarks } from "../../../features/authentication/useAddBookmarks";
 
 function Bookmark(id) {
   const { user } = useUser();
   const [bookmark, setBookmark] = useState(false);
-  const { updateBookmark, isLoading } = useBookmarks();
+  const { updateBookmark, isLoading } = useAddBookmarks();
   const userBookmarks = user?.user_metadata.bookmarks;
 
   useEffect(() => {
@@ -16,8 +16,6 @@ function Bookmark(id) {
       setBookmark(isBookmarked);
     }
   }, [id.id, user]);
-
-  console.log(user?.user_metadata.bookmarks);
 
   if (user && !isLoading)
     return (
@@ -30,7 +28,7 @@ function Bookmark(id) {
           updateBookmark({
             oldBookmarks: userBookmarks,
             newBookmark: id,
-            isBookmark: bookmark,
+            isBookmarked: bookmark,
           });
         }}
       >

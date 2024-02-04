@@ -6,7 +6,6 @@ import Rating from "./Rating";
 import PriceTag from "../priceTag";
 import Bookmark from "../Buttons/Bookmark";
 import ItemColors from "./ItemColors";
-import { useUser } from "../../../features/authentication/useUser";
 
 /* eslint-disable react/prop-types */
 function ProductCard({ item }) {

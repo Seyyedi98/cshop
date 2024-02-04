@@ -46,26 +46,34 @@ export async function logout() {
   if (error) throw new Error(error.message);
 }
 
-export async function updateUserBookmarks({
+export async function addUserBookmarks({
   oldBookmarks,
   newBookmark,
-  isBookmark,
+  isBookmarked,
 }) {
-  // Convert array to Set to remove duplicate values
-  const bookmarksSet = new Set(oldBookmarks);
+  let newBookmrks;
 
-  if (isBookmark) {
+  if (!isBookmarked) {
     const updatedBookmarks = oldBookmarks.push(newBookmark.id);
+
+    // Convert array to Set to remove duplicate values
+    let bookmarksSet = [...new Set(oldBookmarks)];
+
+    // Convert Set to array to prevent supabase database error
+    newBookmrks = Array.from(bookmarksSet);
   }
 
-  if (!isBookmark) {
+  if (isBookmarked) {
     const updatedBookmarks = oldBookmarks.filter(
       (bookmark) => bookmark !== newBookmark.id,
     );
-  }
 
-  // Convert Set to array to prevent supabase database error
-  const newBookmrks = Array.from(bookmarksSet);
+    // Convert array to Set to remove duplicate values
+    let bookmarksSet = [...new Set(updatedBookmarks)];
+
+    // Convert Set to array to prevent supabase database error
+    newBookmrks = Array.from(bookmarksSet);
+  }
 
   const { data: bookmark, error } = await supabase.auth.updateUser({
     data: { bookmarks: newBookmrks },
