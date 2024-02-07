@@ -29,7 +29,7 @@ function ProfileDropDown() {
           </figure>
           <div className="flex flex-col gap-1">
             <h1 className="text-lg font-semibold">
-              {Object.values(user.user_metadata)[0]}
+              {Object.values(user.user_metadata.fullName)}
             </h1>
             <span className="text-xs font-thin text-slate-600">
               {user.email}
