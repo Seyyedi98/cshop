@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */
 import supabase from "./supabase";
 
-export async function getProducts({ category, color, sortBy, page }) {
+export async function getProducts({ category, color, sortBy, page, search }) {
   let query = supabase.from("products").select("*");
   // Categories
   if (category) query = query.in("category", category);
@@ -10,6 +10,9 @@ export async function getProducts({ category, color, sortBy, page }) {
   if (color) query = query.in("colors", color);
 
   // Sort By
+
+  // Search
+  // if (search) query = query.in("title", search);
 
   const { data, error } = await query;
   if (error) {

@@ -2,7 +2,7 @@
 import { useState } from "react";
 
 /* eslint-disable react/prop-types */
-function NavButton({ children, showMenu }) {
+function NavButton({ children }) {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
