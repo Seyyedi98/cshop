@@ -122,7 +122,7 @@ function Product() {
               )}
             </div>
 
-            <hr className=" my-10 border-slate-200 " />
+            <hr className="my-10 border-slate-200 " />
 
             <div className="flex w-full flex-col gap-2">
               <Dropdown

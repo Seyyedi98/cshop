@@ -23,7 +23,6 @@ import { useLastestProducts } from "../features/products/useLastestProducts";
 import { useTopProducts } from "../features/products/useTopProducts";
 import Spinner from "../components/ui/Spinner";
 import Helmet from "../utils/helmet";
-import { useUser } from "../features/authentication/useUser";
 
 function Homepage() {
   const { data: products, isLoading: isLoadingProducts } = useProducts();

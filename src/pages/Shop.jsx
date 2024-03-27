@@ -8,7 +8,7 @@ function Shop() {
   const { isLoading, data } = useProducts();
 
   if (data === null) console.log("No Data");
-
+  console.log(data);
   return (
     <div>
       <Header />
